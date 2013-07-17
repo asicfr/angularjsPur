@@ -1,0 +1,12 @@
+﻿A voir: 
+
+- ctrl type data ?
+	type html5
+	http://jsfiddle.net/asicfr/Q8v9A/
+- liaison avec autres entités ?
+- libellé des entités ?
+
+
+Pour lancer l'application : 
+http://localhost:8080/html5offlineGen/
+chrome://appcache-internals/
