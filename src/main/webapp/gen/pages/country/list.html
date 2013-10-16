@@ -1,0 +1,29 @@
+
+
+<div id="countryList" data-ng-controller="CountryListCtrl">
+ 
+    <h2>Countrys list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>code</th>
+					      <th>name</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in countrys">
+				      		<td>
+	      			<a href="#/country/{{key}}">{{value.code}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/country/{{key}}">{{value.name}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateCountryPage()">New</button>
+ 
+</div>

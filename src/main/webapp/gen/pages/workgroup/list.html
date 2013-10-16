@@ -1,0 +1,37 @@
+
+
+<div id="workgroupList" data-ng-controller="WorkgroupListCtrl">
+ 
+    <h2>Workgroups list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>id</th>
+					      <th>name</th>
+					      <th>description</th>
+					      <th>creationDate</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in workgroups">
+				      		<td>
+	      			<a href="#/workgroup/{{key}}">{{value.id}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/workgroup/{{key}}">{{value.name}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/workgroup/{{key}}">{{value.description}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/workgroup/{{key}}">{{value.creationDate}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateWorkgroupPage()">New</button>
+ 
+</div>

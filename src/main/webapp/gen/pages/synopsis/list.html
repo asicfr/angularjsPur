@@ -1,0 +1,29 @@
+
+
+<div id="synopsisList" data-ng-controller="SynopsisListCtrl">
+ 
+    <h2>Synopsiss list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>bookId</th>
+					      <th>synopsis</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in synopsiss">
+				      		<td>
+	      			<a href="#/synopsis/{{key}}">{{value.bookId}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/synopsis/{{key}}">{{value.synopsis}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateSynopsisPage()">New</button>
+ 
+</div>

@@ -1,0 +1,61 @@
+
+
+<div id="shopList" data-ng-controller="ShopListCtrl">
+ 
+    <h2>Shops list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>code</th>
+					      <th>name</th>
+					      <th>address1</th>
+					      <th>address2</th>
+					      <th>zipCode</th>
+					      <th>city</th>
+					      <th>countryCode</th>
+					      <th>phone</th>
+					      <th>email</th>
+					      <th>executive</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in shops">
+				      		<td>
+	      			<a href="#/shop/{{key}}">{{value.code}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.name}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.address1}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.address2}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.zipCode}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.city}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.countryCode}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.phone}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.email}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/shop/{{key}}">{{value.executive}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateShopPage()">New</button>
+ 
+</div>

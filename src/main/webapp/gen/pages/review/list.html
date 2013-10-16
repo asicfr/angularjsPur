@@ -1,0 +1,45 @@
+
+
+<div id="reviewList" data-ng-controller="ReviewListCtrl">
+ 
+    <h2>Reviews list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>customerCode</th>
+					      <th>bookId</th>
+					      <th>reviewText</th>
+					      <th>reviewNote</th>
+					      <th>creation</th>
+					      <th>lastUpdate</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in reviews">
+				      		<td>
+	      			<a href="#/review/{{key}}">{{value.customerCode}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/review/{{key}}">{{value.bookId}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/review/{{key}}">{{value.reviewText}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/review/{{key}}">{{value.reviewNote}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/review/{{key}}">{{value.creation}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/review/{{key}}">{{value.lastUpdate}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateReviewPage()">New</button>
+ 
+</div>

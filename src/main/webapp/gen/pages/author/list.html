@@ -1,0 +1,33 @@
+
+
+<div id="authorList" data-ng-controller="AuthorListCtrl">
+ 
+    <h2>Authors list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>id</th>
+					      <th>firstName</th>
+					      <th>lastName</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in authors">
+				      		<td>
+	      			<a href="#/author/{{key}}">{{value.id}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/author/{{key}}">{{value.firstName}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/author/{{key}}">{{value.lastName}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateAuthorPage()">New</button>
+ 
+</div>

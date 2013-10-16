@@ -1,0 +1,53 @@
+
+
+<div id="publisherList" data-ng-controller="PublisherListCtrl">
+ 
+    <h2>Publishers list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>code</th>
+					      <th>countryCode</th>
+					      <th>name</th>
+					      <th>email</th>
+					      <th>contact</th>
+					      <th>city</th>
+					      <th>zipCode</th>
+					      <th>phone</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in publishers">
+				      		<td>
+	      			<a href="#/publisher/{{key}}">{{value.code}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/publisher/{{key}}">{{value.countryCode}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/publisher/{{key}}">{{value.name}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/publisher/{{key}}">{{value.email}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/publisher/{{key}}">{{value.contact}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/publisher/{{key}}">{{value.city}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/publisher/{{key}}">{{value.zipCode}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/publisher/{{key}}">{{value.phone}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreatePublisherPage()">New</button>
+ 
+</div>

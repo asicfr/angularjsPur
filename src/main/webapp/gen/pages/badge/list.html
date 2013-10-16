@@ -1,0 +1,33 @@
+
+
+<div id="badgeList" data-ng-controller="BadgeListCtrl">
+ 
+    <h2>Badges list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>badgeNumber</th>
+					      <th>authorizationLevel</th>
+					      <th>endOfValidity</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in badges">
+				      		<td>
+	      			<a href="#/badge/{{key}}">{{value.badgeNumber}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/badge/{{key}}">{{value.authorizationLevel}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/badge/{{key}}">{{value.endOfValidity}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateBadgePage()">New</button>
+ 
+</div>

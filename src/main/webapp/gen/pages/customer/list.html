@@ -1,0 +1,65 @@
+
+
+<div id="customerList" data-ng-controller="CustomerListCtrl">
+ 
+    <h2>Customers list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>code</th>
+					      <th>countryCode</th>
+					      <th>firstName</th>
+					      <th>lastName</th>
+					      <th>login</th>
+					      <th>password</th>
+					      <th>age</th>
+					      <th>city</th>
+					      <th>zipCode</th>
+					      <th>phone</th>
+					      <th>reviewer</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in customers">
+				      		<td>
+	      			<a href="#/customer/{{key}}">{{value.code}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.countryCode}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.firstName}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.lastName}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.login}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.password}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.age}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.city}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.zipCode}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.phone}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/customer/{{key}}">{{value.reviewer}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateCustomerPage()">New</button>
+ 
+</div>

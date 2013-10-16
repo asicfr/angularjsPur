@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="bookStore">
+<head>
+	<title>Book Store</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Pur Angulajs app">
+	<meta name="author" content="@asicfr">
+	<meta name="site" content="http://techasite.blogspot.fr/">
+	
+	<link href="css/vendor/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/vendor/bootstrap-responsive.min.css" rel="stylesheet" />
+
+	<link href="css/app/custom.css" rel="stylesheet"/>
+	
+	<script src="js/vendor/jquery.min.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="js/vendor/angular.min.js"></script>
+
+	<script src="gen/global/mainctrl.js"></script>
+	<script src="js/app/dummybackend.js"></script>
+
+	<script src="js/app/myselectServices.js"></script>
+	<script src="js/app/myselectDirective.js"></script>
+	<script src="js/app/myselectCtrl.js"></script>
+
+	<script src="gen/pages/author/authorctrl.js"></script>
+	<script src="gen/pages/author/authorsrv.js"></script>
+	<script src="gen/pages/badge/badgectrl.js"></script>
+	<script src="gen/pages/badge/badgesrv.js"></script>
+	<script src="gen/pages/book/bookctrl.js"></script>
+	<script src="gen/pages/book/booksrv.js"></script>
+	<script src="gen/pages/bookorder/bookorderctrl.js"></script>
+	<script src="gen/pages/bookorder/bookordersrv.js"></script>
+	<script src="gen/pages/bookorderitem/bookorderitemctrl.js"></script>
+	<script src="gen/pages/bookorderitem/bookorderitemsrv.js"></script>
+	<script src="gen/pages/country/countryctrl.js"></script>
+	<script src="gen/pages/country/countrysrv.js"></script>
+	<script src="gen/pages/customer/customerctrl.js"></script>
+	<script src="gen/pages/customer/customersrv.js"></script>
+	<script src="gen/pages/employee/employeectrl.js"></script>
+	<script src="gen/pages/employee/employeesrv.js"></script>
+	<script src="gen/pages/employeegroup/employeegroupctrl.js"></script>
+	<script src="gen/pages/employeegroup/employeegroupsrv.js"></script>
+	<script src="gen/pages/publisher/publisherctrl.js"></script>
+	<script src="gen/pages/publisher/publishersrv.js"></script>
+	<script src="gen/pages/review/reviewctrl.js"></script>
+	<script src="gen/pages/review/reviewsrv.js"></script>
+	<script src="gen/pages/shop/shopctrl.js"></script>
+	<script src="gen/pages/shop/shopsrv.js"></script>
+	<script src="gen/pages/synopsis/synopsisctrl.js"></script>
+	<script src="gen/pages/synopsis/synopsissrv.js"></script>
+	<script src="gen/pages/workgroup/workgroupctrl.js"></script>
+	<script src="gen/pages/workgroup/workgroupsrv.js"></script>
+
+</head>
+<body data-ng-controller="MainCtrl">
+	<ng-include src="'gen/global/header.html'"></ng-include>
+	<br />
+	<div id="alert_placeholder"></div>
+	<div class="container" data-ng-view></div>
+	
+	<div data-ng-controller="MySelectCtrl">
+	    <myselect data-ng-params="myparams" data-ng-modelkey="selectedElement" ></myselect>
+	</div>
+	
+	<ng-include src="'gen/global/footer.html'"></ng-include>
+	
+</body>
+</html>

@@ -1,0 +1,37 @@
+
+
+<div id="bookorderitemList" data-ng-controller="BookOrderItemListCtrl">
+ 
+    <h2>BookOrderItems list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>bookOrderId</th>
+					      <th>bookId</th>
+					      <th>quantity</th>
+					      <th>price</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in bookorderitems">
+				      		<td>
+	      			<a href="#/bookorderitem/{{key}}">{{value.bookOrderId}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/bookorderitem/{{key}}">{{value.bookId}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/bookorderitem/{{key}}">{{value.quantity}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/bookorderitem/{{key}}">{{value.price}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateBookOrderItemPage()">New</button>
+ 
+</div>

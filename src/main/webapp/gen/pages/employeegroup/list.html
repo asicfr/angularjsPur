@@ -1,0 +1,29 @@
+
+
+<div id="employeegroupList" data-ng-controller="EmployeeGroupListCtrl">
+ 
+    <h2>EmployeeGroups list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>employeeCode</th>
+					      <th>groupId</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="(key, value) in employeegroups">
+				      		<td>
+	      			<a href="#/employeegroup/{{key}}">{{value.employeeCode}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/employeegroup/{{key}}">{{value.groupId}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateEmployeeGroupPage()">New</button>
+ 
+</div>

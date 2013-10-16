@@ -1,0 +1,51 @@
+
+<div id="reviewEdit" data-ng-controller="ReviewDetailCtrl">
+ 
+    <h2>Review Edit</h2>
+    
+ 	<form class="form-horizontal">
+ 	
+	 		<div class="control-group">
+			<label class="control-label" for="customerCode">customerCode</label>
+			<div class="controls">
+				<input type="text" id="customerCode" data-ng-model="onereview.customerCode" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="bookId">bookId</label>
+			<div class="controls">
+				<input type="text" id="bookId" data-ng-model="onereview.bookId" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="reviewText">reviewText</label>
+			<div class="controls">
+				<input type="text" id="reviewText" data-ng-model="onereview.reviewText" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="reviewNote">reviewNote</label>
+			<div class="controls">
+				<input type="text" id="reviewNote" data-ng-model="onereview.reviewNote" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="creation">creation</label>
+			<div class="controls">
+				<input type="text" id="creation" data-ng-model="onereview.creation" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="lastUpdate">lastUpdate</label>
+			<div class="controls">
+				<input type="text" id="lastUpdate" data-ng-model="onereview.lastUpdate" />
+			</div>
+		</div>
+  	
+	</form>
+ 	<br />
+    <button data-ng-click="updateReview()">Save</button>
+    <button data-ng-click="removeReview()">Remove</button>
+	<button data-ng-click="openListReviewPage()">Return to list</button>
+ 
+</div>

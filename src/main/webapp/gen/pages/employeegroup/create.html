@@ -1,0 +1,27 @@
+
+<div id="employeegroupCreate" data-ng-controller="EmployeeGroupCreateCtrl">
+ 
+    <h2>EmployeeGroup Create</h2>
+ 
+ 	<form class="form-horizontal">
+ 	
+	 		<div class="control-group">
+			<label class="control-label" for="employeeCode">employeeCode</label>
+			<div class="controls">
+				<input type="text" id="employeeCode" data-ng-model="oneemployeegroup.employeeCode" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="groupId">groupId</label>
+			<div class="controls">
+				<input type="text" id="groupId" data-ng-model="oneemployeegroup.groupId" />
+			</div>
+		</div>
+  	
+	</form>
+
+ 	<br />
+    <button data-ng-click="saveEmployeeGroup()">Save</button>
+	<button data-ng-click="openListEmployeeGroupPage()">Return to list</button>
+  
+</div>

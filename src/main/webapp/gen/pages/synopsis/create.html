@@ -1,0 +1,27 @@
+
+<div id="synopsisCreate" data-ng-controller="SynopsisCreateCtrl">
+ 
+    <h2>Synopsis Create</h2>
+ 
+ 	<form class="form-horizontal">
+ 	
+	 		<div class="control-group">
+			<label class="control-label" for="bookId">bookId</label>
+			<div class="controls">
+				<input type="text" id="bookId" data-ng-model="onesynopsis.bookId" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="synopsis">synopsis</label>
+			<div class="controls">
+				<input type="text" id="synopsis" data-ng-model="onesynopsis.synopsis" />
+			</div>
+		</div>
+  	
+	</form>
+
+ 	<br />
+    <button data-ng-click="saveSynopsis()">Save</button>
+	<button data-ng-click="openListSynopsisPage()">Return to list</button>
+  
+</div>

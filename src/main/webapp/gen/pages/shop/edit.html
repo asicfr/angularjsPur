@@ -1,0 +1,75 @@
+
+<div id="shopEdit" data-ng-controller="ShopDetailCtrl">
+ 
+    <h2>Shop Edit</h2>
+    
+ 	<form class="form-horizontal">
+ 	
+	 		<div class="control-group">
+			<label class="control-label" for="code">code</label>
+			<div class="controls">
+				<input type="text" id="code" data-ng-model="oneshop.code" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="name">name</label>
+			<div class="controls">
+				<input type="text" id="name" data-ng-model="oneshop.name" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="address1">address1</label>
+			<div class="controls">
+				<input type="text" id="address1" data-ng-model="oneshop.address1" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="address2">address2</label>
+			<div class="controls">
+				<input type="text" id="address2" data-ng-model="oneshop.address2" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="zipCode">zipCode</label>
+			<div class="controls">
+				<input type="text" id="zipCode" data-ng-model="oneshop.zipCode" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="city">city</label>
+			<div class="controls">
+				<input type="text" id="city" data-ng-model="oneshop.city" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="countryCode">countryCode</label>
+			<div class="controls">
+				<input type="text" id="countryCode" data-ng-model="oneshop.countryCode" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="phone">phone</label>
+			<div class="controls">
+				<input type="text" id="phone" data-ng-model="oneshop.phone" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="email">email</label>
+			<div class="controls">
+				<input type="text" id="email" data-ng-model="oneshop.email" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="executive">executive</label>
+			<div class="controls">
+				<input type="text" id="executive" data-ng-model="oneshop.executive" />
+			</div>
+		</div>
+  	
+	</form>
+ 	<br />
+    <button data-ng-click="updateShop()">Save</button>
+    <button data-ng-click="removeShop()">Remove</button>
+	<button data-ng-click="openListShopPage()">Return to list</button>
+ 
+</div>

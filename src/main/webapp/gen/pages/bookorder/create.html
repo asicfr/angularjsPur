@@ -1,0 +1,51 @@
+
+<div id="bookorderCreate" data-ng-controller="BookOrderCreateCtrl">
+ 
+    <h2>BookOrder Create</h2>
+ 
+ 	<form class="form-horizontal">
+ 	
+	 		<div class="control-group">
+			<label class="control-label" for="id">id</label>
+			<div class="controls">
+				<input type="text" id="id" data-ng-model="onebookorder.id" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="shopCode">shopCode</label>
+			<div class="controls">
+				<input type="text" id="shopCode" data-ng-model="onebookorder.shopCode" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="customerCode">customerCode</label>
+			<div class="controls">
+				<input type="text" id="customerCode" data-ng-model="onebookorder.customerCode" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="employeeCode">employeeCode</label>
+			<div class="controls">
+				<input type="text" id="employeeCode" data-ng-model="onebookorder.employeeCode" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="date">date</label>
+			<div class="controls">
+				<input type="text" id="date" data-ng-model="onebookorder.date" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="state">state</label>
+			<div class="controls">
+				<input type="text" id="state" data-ng-model="onebookorder.state" />
+			</div>
+		</div>
+  	
+	</form>
+
+ 	<br />
+    <button data-ng-click="saveBookOrder()">Save</button>
+	<button data-ng-click="openListBookOrderPage()">Return to list</button>
+  
+</div>
