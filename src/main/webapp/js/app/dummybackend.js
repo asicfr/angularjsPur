@@ -85,5 +85,6 @@ var storageServicesModule = angular.module('bookStore.storage.services', []).fac
         	    return uuid;
         }
     };
+    
 });
 

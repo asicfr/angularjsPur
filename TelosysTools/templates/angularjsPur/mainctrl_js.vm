@@ -1,5 +1,7 @@
 // Global module
 var bookStore = angular.module('bookStore', ['bookStore.main', 
+    'myselect.services',
+    'telosysDirectives',
 #foreach ( $entityClass in $selectedEntities )
     'bookStore.${entityClass.name.toLowerCase()}', 
 #end
@@ -9,10 +11,10 @@ var bookStore = angular.module('bookStore', ['bookStore.main',
 bookStore.run(function(${DOLLAR}rootScope, ${DOLLAR}templateCache, ${DOLLAR}http, ApiStorage) {
 
 	// Force template cache to allow offline for all partials
-	${DOLLAR}http.get('gen/partials/footer.html', {cache:${DOLLAR}templateCache});
-    ${DOLLAR}http.get('gen/partials/header.html', {cache:${DOLLAR}templateCache});
-    ${DOLLAR}http.get('partials/inprogress.html', {cache:${DOLLAR}templateCache});
-    ${DOLLAR}http.get('partials/welcome.html', {cache:${DOLLAR}templateCache});
+	${DOLLAR}http.get('gen/global/footer.html', {cache:${DOLLAR}templateCache});
+    ${DOLLAR}http.get('gen/global/header.html', {cache:${DOLLAR}templateCache});
+    ${DOLLAR}http.get('inprogress.html', {cache:${DOLLAR}templateCache});
+    ${DOLLAR}http.get('welcome.html', {cache:${DOLLAR}templateCache});
 
 #foreach ( $entityClass in $selectedEntities )
     ${DOLLAR}http.get('gen/pages/${entityClass.name.toLowerCase()}/create.html', {cache:${DOLLAR}templateCache});
@@ -26,14 +28,17 @@ bookStore.run(function(${DOLLAR}rootScope, ${DOLLAR}templateCache, ${DOLLAR}http
 	};
 
 	${DOLLAR}rootScope.showInfo = function(message) {
-        ${DOLLAR}('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
-		window.setTimeout(function() { $(".alert").alert('close'); }, 2000);
-    }
+		${DOLLAR}rootScope.show(message, "alert-success");
+    };
 
 	${DOLLAR}rootScope.showError = function(message) {
-        ${DOLLAR}('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
-		window.setTimeout(function() { $(".alert").alert('close'); }, 2000);
-    }
+		${DOLLAR}rootScope.show(message, "alert-error");
+    };
+
+	${DOLLAR}rootScope.show = function(message, myclass) {
+        ${DOLLAR}('#alert_placeholder').html('<div class="alert ' + myclass + '"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+		window.setTimeout(function() { $(".alert").alert('close'); }, 3000);
+    };
 
 });
 
@@ -42,13 +47,13 @@ var bookStoremain = angular.module('bookStore.main', [], function(${DOLLAR}route
 	
 	// Declare welcome route
 	${DOLLAR}routeProvider.when('/welcome', {
-		templateUrl : 'partials/welcome.html',
+		templateUrl : 'welcome.html',
 	    controller: 'MainCtrl'
 	});
 
 	// Declare futur route
 	${DOLLAR}routeProvider.when('/inprogress', {
-		templateUrl : 'main/inprogress.html',
+		templateUrl : 'inprogress.html',
 	    controller: 'MainCtrl'
 	});
 

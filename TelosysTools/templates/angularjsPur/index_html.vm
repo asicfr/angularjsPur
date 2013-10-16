@@ -8,30 +8,38 @@
 	<meta name="author" content="@asicfr">
 	<meta name="site" content="http://techasite.blogspot.fr/">
 	
-	<link href="cssext/bootstrap.min.css" rel="stylesheet" />
-	<link href="cssext/bootstrap-responsive.min.css" rel="stylesheet" />
-	
-	<link href="cssin/custom.css" rel="stylesheet"/>
-	
-	<script src="jsext/jquery.min.js"></script>
-	<script src="jsext/bootstrap.min.js"></script>
-	<script src="jsext/angular.min.js"></script>
+	<link href="css/vendor/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/vendor/bootstrap-responsive.min.css" rel="stylesheet" />
 
-	<script src="jsin/datastore.js"></script>
+	<link href="css/app/custom.css" rel="stylesheet"/>
+	
+	<script src="js/vendor/jquery.min.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="js/vendor/angular.min.js"></script>
 
-	<script src="gen/js/mainctrl.js"></script>
+	<script src="gen/global/mainctrl.js"></script>
+	<script src="js/app/dummybackend.js"></script>
+
+	<script src="js/app/myselectServices.js"></script>
+	<script src="js/app/myselectDirective.js"></script>
+	<script src="js/app/myselectCtrl.js"></script>
 
 #foreach ( $entityClass in $selectedEntities )
-	<script src="gen/jsmodules/${entityClass.name.toLowerCase()}/${entityClass.name.toLowerCase()}ctrl.js"></script>
-	<script src="gen/jsmodules/${entityClass.name.toLowerCase()}/${entityClass.name.toLowerCase()}srv.js"></script>
-#end 
+	<script src="gen/pages/${entityClass.name.toLowerCase()}/${entityClass.name.toLowerCase()}ctrl.js"></script>
+	<script src="gen/pages/${entityClass.name.toLowerCase()}/${entityClass.name.toLowerCase()}srv.js"></script>
+#end
 
 </head>
 <body data-ng-controller="MainCtrl">
-	<ng-include src="'gen/partials/header.html'"></ng-include>
+	<ng-include src="'gen/global/header.html'"></ng-include>
 	<br />
 	<div id="alert_placeholder"></div>
 	<div class="container" data-ng-view></div>
-	<ng-include src="'gen/partials/footer.html'"></ng-include>
+
+	<div data-ng-controller="MySelectCtrl">
+	    <myselect data-ng-params="myparams" data-ng-modelkey="selectedElement" ></myselect>
+	</div>
+
+	<ng-include src="'gen/global/footer.html'"></ng-include>
 </body>
 </html>
