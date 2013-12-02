@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.employeegroup.services', ['app.stor
     		$rootScope.logMe("employeegroup srv get " + id);
     		return ApiStorage.read("employeegroup", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		$rootScope.logMe("employeegroup srv search");
-    		return ApiStorage.search("employeegroup");
+    		return ApiStorage.search("employeegroup", pageSize, pageindex, filtre);
         },
         create: function (employeegroup) {
     		$rootScope.logMe("employeegroup srv create");

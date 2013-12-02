@@ -14,8 +14,10 @@ storageServicesModule.factory('ApiStorage', function($rootScope, $http, ApiStruc
 		for(var k = 0; k < this.structure.columns.length; k++) { 
 			var tmpKey = this.structure.columns[k].key;
 			var tmpString = elemOfArray[tmpKey].toString();
-			var tmpVar = (tmpString.indexOf(this.filtre) !== -1);
-			return tmpVar;
+			isPresent = (tmpString.indexOf(this.filtre) !== -1);
+			if (isPresent) {
+				break;
+			}
 		}
 		return isPresent;
 	};
@@ -110,10 +112,9 @@ storageServicesModule.factory('ApiStorage', function($rootScope, $http, ApiStruc
     	getStructure: function (entityName) {
     		return ApiStructure.getStructure(entityName);
         },
-    	// search("book", defaultStructure, pageSize, pageindex, filtre, customStructure);
-    	search: function (entityName, defaultStructure, pageSize, pageindex, filtre, customStructure) {
+    	search: function (entityName, pageSize, pageindex, filtre, customStructure) {
     		$rootScope.logMe("search for " + entityName);
-			var structureEntity = ApiStructure.getStructureDetail(entityName);
+			var structureEntity = ApiStructure.getStructure(entityName);
 			if (mydatastore.hasOwnProperty(entityName)) {
 	    		var sublist = mydatastore[entityName];
 	    		return getlist(structureEntity, sublist, pageSize, pageindex, filtre);

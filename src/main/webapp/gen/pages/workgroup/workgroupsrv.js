@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.workgroup.services', ['app.storage.
     		$rootScope.logMe("workgroup srv get " + id);
     		return ApiStorage.read("workgroup", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		$rootScope.logMe("workgroup srv search");
-    		return ApiStorage.search("workgroup");
+    		return ApiStorage.search("workgroup", pageSize, pageindex, filtre);
         },
         create: function (workgroup) {
     		$rootScope.logMe("workgroup srv create");

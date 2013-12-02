@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.country.services', ['app.storage.se
     		$rootScope.logMe("country srv get " + id);
     		return ApiStorage.read("country", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		$rootScope.logMe("country srv search");
-    		return ApiStorage.search("country");
+    		return ApiStorage.search("country", pageSize, pageindex, filtre);
         },
         create: function (country) {
     		$rootScope.logMe("country srv create");

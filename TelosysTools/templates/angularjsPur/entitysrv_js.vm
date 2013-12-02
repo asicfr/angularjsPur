@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.${beanClass.name.toLowerCase()}.ser
     		${DOLLAR}rootScope.logMe("${beanClass.name.toLowerCase()} srv get " + id);
     		return ApiStorage.read("${beanClass.name.toLowerCase()}", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		${DOLLAR}rootScope.logMe("${beanClass.name.toLowerCase()} srv search");
-    		return ApiStorage.search("${beanClass.name.toLowerCase()}");
+    		return ApiStorage.search("${beanClass.name.toLowerCase()}", pageSize, pageindex, filtre);
         },
         create: function (${beanClass.name.toLowerCase()}) {
     		${DOLLAR}rootScope.logMe("${beanClass.name.toLowerCase()} srv create");

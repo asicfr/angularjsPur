@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.shop.services', ['app.storage.servi
     		$rootScope.logMe("shop srv get " + id);
     		return ApiStorage.read("shop", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		$rootScope.logMe("shop srv search");
-    		return ApiStorage.search("shop");
+    		return ApiStorage.search("shop", pageSize, pageindex, filtre);
         },
         create: function (shop) {
     		$rootScope.logMe("shop srv create");

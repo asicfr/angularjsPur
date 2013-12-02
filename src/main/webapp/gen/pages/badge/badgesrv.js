@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.badge.services', ['app.storage.serv
     		$rootScope.logMe("badge srv get " + id);
     		return ApiStorage.read("badge", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		$rootScope.logMe("badge srv search");
-    		return ApiStorage.search("badge");
+    		return ApiStorage.search("badge", pageSize, pageindex, filtre);
         },
         create: function (badge) {
     		$rootScope.logMe("badge srv create");

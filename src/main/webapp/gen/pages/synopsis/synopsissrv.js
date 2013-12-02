@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.synopsis.services', ['app.storage.s
     		$rootScope.logMe("synopsis srv get " + id);
     		return ApiStorage.read("synopsis", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		$rootScope.logMe("synopsis srv search");
-    		return ApiStorage.search("synopsis");
+    		return ApiStorage.search("synopsis", pageSize, pageindex, filtre);
         },
         create: function (synopsis) {
     		$rootScope.logMe("synopsis srv create");

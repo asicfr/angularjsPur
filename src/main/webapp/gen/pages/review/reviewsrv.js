@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.review.services', ['app.storage.ser
     		$rootScope.logMe("review srv get " + id);
     		return ApiStorage.read("review", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		$rootScope.logMe("review srv search");
-    		return ApiStorage.search("review");
+    		return ApiStorage.search("review", pageSize, pageindex, filtre);
         },
         create: function (review) {
     		$rootScope.logMe("review srv create");

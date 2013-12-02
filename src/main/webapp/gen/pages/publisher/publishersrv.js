@@ -6,9 +6,9 @@ var bookServicesModule = angular.module('app.publisher.services', ['app.storage.
     		$rootScope.logMe("publisher srv get " + id);
     		return ApiStorage.read("publisher", id);
         },
-        search: function () {
+        search: function (pageSize, pageindex, filtre) {
     		$rootScope.logMe("publisher srv search");
-    		return ApiStorage.search("publisher");
+    		return ApiStorage.search("publisher", pageSize, pageindex, filtre);
         },
         create: function (publisher) {
     		$rootScope.logMe("publisher srv create");
