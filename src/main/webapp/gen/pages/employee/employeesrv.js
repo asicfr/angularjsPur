@@ -1,6 +1,6 @@
 
 // Employee services
-var bookServicesModule = angular.module('bookStore.employee.services', ['bookStore.storage.services']).factory('ApiEmployee', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.employee.services', ['app.storage.services']).factory('ApiEmployee', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("employee srv get " + id);

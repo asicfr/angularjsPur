@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="bookStore">
+<html lang="en" data-ng-app="app">
 <head>
 	<title>Book Store</title>
 	<meta charset="utf-8">
@@ -16,13 +16,13 @@
 	<script src="js/vendor/jquery.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/vendor/angular.min.js"></script>
+	<script src="js/vendor/underscore-min.js"></script>
 
-	<script src="gen/global/mainctrl.js"></script>
+	<script src="gen/global/app.js"></script>
+	<script src="gen/global/structurebackend.js"></script>
 	<script src="js/app/dummybackend.js"></script>
 
-	<script src="js/app/myselectServices.js"></script>
 	<script src="js/app/myselectDirective.js"></script>
-	<script src="js/app/myselectCtrl.js"></script>
 
 #foreach ( $entityClass in $selectedEntities )
 	<script src="gen/pages/${entityClass.name.toLowerCase()}/${entityClass.name.toLowerCase()}ctrl.js"></script>
@@ -35,11 +35,6 @@
 	<br />
 	<div id="alert_placeholder"></div>
 	<div class="container" data-ng-view></div>
-
-	<div data-ng-controller="MySelectCtrl">
-	    <myselect data-ng-params="myparams" data-ng-modelkey="selectedElement" ></myselect>
-	</div>
-
 	<ng-include src="'gen/global/footer.html'"></ng-include>
 </body>
 </html>

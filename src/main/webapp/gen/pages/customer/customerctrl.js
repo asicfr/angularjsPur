@@ -1,6 +1,6 @@
 
-// customer module add into global module (see mainctrl.js)
-var bookStorecustomer = angular.module('bookStore.customer', ['bookStore.customer.services'], function($routeProvider, $locationProvider) {
+// customer module add into global module (see app.js)
+var appcustomer = angular.module('app.customer', ['app.customer.services'], function($routeProvider, $locationProvider) {
 
 	// customer list
 	$routeProvider.when('/customer', {
@@ -19,12 +19,14 @@ var bookStorecustomer = angular.module('bookStore.customer', ['bookStore.custome
 
 });
 
-// customer Controllers
-bookStorecustomer.controller('CustomerListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCustomer', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiCustomer, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appcustomer.controller('CustomerListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCustomer', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiCustomer, ApiStorage) {
 	$rootScope.logMe("CustomerListCtrl");
 	var self = this;
 	
-	$scope.customers = ApiCustomer.search();
+	var listTmp = ApiCustomer.search();
+	$scope.customers = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Customer call
@@ -36,7 +38,12 @@ bookStorecustomer.controller('CustomerListCtrl', ['$scope', '$location', '$route
 }]);
 
 
-bookStorecustomer.controller('CustomerDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCustomer', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiCustomer, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appcustomer.controller('CustomerDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCustomer', 'ApiStructure', 
+		'ApiCountry',
+		function ($scope, $location, $routeParams, $rootScope, ApiCustomer, ApiStructure
+		, ApiCountry
+		) {
 	$rootScope.logMe("CustomerDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -74,9 +81,32 @@ bookStorecustomer.controller('CustomerDetailCtrl', ['$scope', '$location', '$rou
 		$location.path("/customer");
 	};
 
+	// ------ Directive configuration for country ------ 
+    $scope.country_myparams = {};
+    $scope.country_myparams.pageSize = 5;	
+    $scope.country_myparams.paginated = true;
+    $scope.country_myparams.key = ApiStructure.getStructureKey("country");
+	$scope.country_myparams.detail = ApiStructure.getStructureDetail("country");
+	$scope.country_myparams.columns = ApiStructure.getStructureColumns("country");
+	$scope.country_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCountry.search($scope.country_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.country_myparams.getdetailcallback = function(key) {
+		return ApiCountry.get(key);
+    };
+	$scope.country_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
 
-bookStorecustomer.controller('CustomerCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCustomer', function ($scope, $location, $routeParams, $rootScope, ApiCustomer) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appcustomer.controller('CustomerCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCustomer', 'ApiStructure', 
+		'ApiCountry',
+		function ($scope, $location, $routeParams, $rootScope, ApiCustomer, ApiStructure
+		, ApiCountry
+		) {
 	$rootScope.logMe("CustomerCreateCtrl");
 	$scope.onecustomer = {};
 	
@@ -96,5 +126,22 @@ bookStorecustomer.controller('CustomerCreateCtrl', ['$scope', '$location', '$rou
 		$rootScope.logMe("openListCustomerPage");
 		$location.path("/customer");
 	};
+
+	// ------ Directive configuration for country ------ 
+    $scope.country_myparams = {};
+    $scope.country_myparams.pageSize = 5;	
+    $scope.country_myparams.paginated = true;
+    $scope.country_myparams.key = ApiStructure.getStructureKey("country");
+	$scope.country_myparams.detail = ApiStructure.getStructureDetail("country");
+	$scope.country_myparams.columns = ApiStructure.getStructureColumns("country");
+	$scope.country_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCountry.search($scope.country_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.country_myparams.getdetailcallback = function(key) {
+		return ApiCountry.get(key);
+    };
+	$scope.country_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
 
 }]);

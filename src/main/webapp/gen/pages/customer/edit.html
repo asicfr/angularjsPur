@@ -2,80 +2,86 @@
 <div id="customerEdit" data-ng-controller="CustomerDetailCtrl">
  
     <h2>Customer Edit</h2>
-    
+ 
  	<form class="form-horizontal">
- 	
-	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="code">code</label>
 			<div class="controls">
 				<input type="text" id="code" data-ng-model="onecustomer.code" />
 			</div>
 		</div>
-  	 		<div class="control-group">
-			<label class="control-label" for="countryCode">countryCode</label>
-			<div class="controls">
-				<input type="text" id="countryCode" data-ng-model="onecustomer.countryCode" />
-			</div>
-		</div>
-  	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="firstName">firstName</label>
 			<div class="controls">
 				<input type="text" id="firstName" data-ng-model="onecustomer.firstName" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="lastName">lastName</label>
 			<div class="controls">
 				<input type="text" id="lastName" data-ng-model="onecustomer.lastName" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="login">login</label>
 			<div class="controls">
 				<input type="text" id="login" data-ng-model="onecustomer.login" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="password">password</label>
 			<div class="controls">
 				<input type="text" id="password" data-ng-model="onecustomer.password" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="age">age</label>
 			<div class="controls">
 				<input type="text" id="age" data-ng-model="onecustomer.age" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="city">city</label>
 			<div class="controls">
 				<input type="text" id="city" data-ng-model="onecustomer.city" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="zipCode">zipCode</label>
 			<div class="controls">
 				<input type="text" id="zipCode" data-ng-model="onecustomer.zipCode" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="phone">phone</label>
 			<div class="controls">
 				<input type="text" id="phone" data-ng-model="onecustomer.phone" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="reviewer">reviewer</label>
 			<div class="controls">
 				<input type="text" id="reviewer" data-ng-model="onecustomer.reviewer" />
 			</div>
 		</div>
-  	
+
+
+ 		<div class="control-group">
+			<label class="control-label">country</label>
+			<div class="controls">
+				<myselect data-ng-params="country_myparams" data-ng-modelkey="onecustomer.country" ></myselect>
+			</div>
+		</div>
+
+
+
 	</form>
+
  	<br />
     <button data-ng-click="updateCustomer()">Save</button>
     <button data-ng-click="removeCustomer()">Remove</button>
 	<button data-ng-click="openListCustomerPage()">Return to list</button>
- 
+  
 </div>

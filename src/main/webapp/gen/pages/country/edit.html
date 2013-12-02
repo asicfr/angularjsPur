@@ -2,26 +2,32 @@
 <div id="countryEdit" data-ng-controller="CountryDetailCtrl">
  
     <h2>Country Edit</h2>
-    
+ 
  	<form class="form-horizontal">
- 	
-	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="code">code</label>
 			<div class="controls">
 				<input type="text" id="code" data-ng-model="onecountry.code" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="name">name</label>
 			<div class="controls">
 				<input type="text" id="name" data-ng-model="onecountry.name" />
 			</div>
 		</div>
-  	
+
+
+
+
+
 	</form>
+
  	<br />
     <button data-ng-click="updateCountry()">Save</button>
     <button data-ng-click="removeCountry()">Remove</button>
 	<button data-ng-click="openListCountryPage()">Return to list</button>
- 
+  
 </div>

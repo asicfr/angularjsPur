@@ -3,7 +3,7 @@
  (c) 2010-2013 @asicfr
  License: MIT
 */
-bookStoremain.controller('MySelectCtrl', ['$scope', 'ApiMyselect', function($scope, ApiMyselect) {
+appmain.controller('MySelectCtrl', ['$scope', 'ApiMyselect', function($scope, ApiMyselect) {
     $scope.selectedElement = 2;
  
     // mock data

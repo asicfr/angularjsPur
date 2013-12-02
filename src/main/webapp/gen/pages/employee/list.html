@@ -7,39 +7,39 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>code</th>
-					      <th>shopCode</th>
-					      <th>firstName</th>
-					      <th>lastName</th>
-					      <th>manager</th>
-					      <th>badgeNumber</th>
-					      <th>email</th>
-				    </tr>
+		      <th>code</th>
+		      <th>shopCode</th>
+		      <th>firstName</th>
+		      <th>lastName</th>
+		      <th>manager</th>
+		      <th>badgeNumber</th>
+		      <th>email</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in employees">
-				      		<td>
-	      			<a href="#/employee/{{key}}">{{value.code}}</a>
+        <tr data-ng-repeat="employee in employees">
+	      		<td>
+	      			<a href="#/employee/{{employee.code}}">{{employee.code}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/employee/{{key}}">{{value.shopCode}}</a>
+	      		<td>
+	      			<a href="#/employee/{{employee.code}}">{{employee.shopCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/employee/{{key}}">{{value.firstName}}</a>
+	      		<td>
+	      			<a href="#/employee/{{employee.code}}">{{employee.firstName}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/employee/{{key}}">{{value.lastName}}</a>
+	      		<td>
+	      			<a href="#/employee/{{employee.code}}">{{employee.lastName}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/employee/{{key}}">{{value.manager}}</a>
+	      		<td>
+	      			<a href="#/employee/{{employee.code}}">{{employee.manager}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/employee/{{key}}">{{value.badgeNumber}}</a>
+	      		<td>
+	      			<a href="#/employee/{{employee.code}}">{{employee.badgeNumber}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/employee/{{key}}">{{value.email}}</a>
+	      		<td>
+	      			<a href="#/employee/{{employee.code}}">{{employee.email}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

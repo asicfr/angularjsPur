@@ -1,6 +1,6 @@
 
 // Synopsis services
-var bookServicesModule = angular.module('bookStore.synopsis.services', ['bookStore.storage.services']).factory('ApiSynopsis', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.synopsis.services', ['app.storage.services']).factory('ApiSynopsis', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("synopsis srv get " + id);

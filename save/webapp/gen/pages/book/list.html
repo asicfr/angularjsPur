@@ -1,0 +1,61 @@
+
+
+<div id="bookList" data-ng-controller="BookListCtrl">
+ 
+    <h2>Books list</h2>
+
+	<table class="table table-striped colortable">
+	  <thead>
+	    <tr>
+					      <th>id</th>
+					      <th>publisherId</th>
+					      <th>authorId</th>
+					      <th>isbn</th>
+					      <th>title</th>
+					      <th>price</th>
+					      <th>quantity</th>
+					      <th>discount</th>
+					      <th>availability</th>
+					      <th>bestSeller</th>
+				    </tr>
+	  </thead>
+	  <tbody>
+        <tr data-ng-repeat="book in books">
+				      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.id}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.publisherId}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.authorId}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.isbn}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.title}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.price}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.quantity}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.discount}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.availability}}</a>
+	      		</td>
+		  		      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.bestSeller}}</a>
+	      		</td>
+		  		    </tr>
+	  </tbody>
+	</table>
+ 
+ 	<br />
+ 	<button data-ng-click="openCreateBookPage()">New</button>
+ 
+</div>

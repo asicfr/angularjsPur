@@ -1,6 +1,6 @@
 
-// book module add into global module (see mainctrl.js)
-var bookStorebook = angular.module('bookStore.book', ['bookStore.book.services', 'ngGrid'], function($routeProvider, $locationProvider) {
+// book module add into global module (see app.js)
+var appbook = angular.module('app.book', ['app.book.services'], function($routeProvider, $locationProvider) {
 
 	// book list
 	$routeProvider.when('/book', {
@@ -19,14 +19,16 @@ var bookStorebook = angular.module('bookStore.book', ['bookStore.book.services',
 
 });
 
-// book Controllers
-bookStorebook.controller('BookListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBook', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBook, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appbook.controller('BookListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBook', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBook, ApiStorage) {
 	$rootScope.logMe("BookListCtrl");
 	var self = this;
 	
-	$scope.books = ApiBook.search();
+	var listTmp = ApiBook.search();
+	$scope.books = listTmp.datapage;
 	$rootScope.logMe("search end");
-	
+
 	// new Book call
 	$scope.openCreateBookPage = function () {
 		$rootScope.logMe("openCreateBookPage");
@@ -36,7 +38,14 @@ bookStorebook.controller('BookListCtrl', ['$scope', '$location', '$routeParams',
 }]);
 
 
-bookStorebook.controller('BookDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBook', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBook, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appbook.controller('BookDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBook', 'ApiStructure', 
+		'ApiAuthor',
+		'ApiPublisher',
+		function ($scope, $location, $routeParams, $rootScope, ApiBook, ApiStructure
+		, ApiAuthor
+		, ApiPublisher
+		) {
 	$rootScope.logMe("BookDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -74,25 +83,53 @@ bookStorebook.controller('BookDetailCtrl', ['$scope', '$location', '$routeParams
 		$location.path("/book");
 	};
 
+	// ------ Directive configuration for author ------ 
+    $scope.author_myparams = {};
+    $scope.author_myparams.pageSize = 5;	
+    $scope.author_myparams.paginated = true;
+    $scope.author_myparams.key = ApiStructure.getStructureKey("author");
+	$scope.author_myparams.detail = ApiStructure.getStructureDetail("author");
+	$scope.author_myparams.columns = ApiStructure.getStructureColumns("author");
+	$scope.author_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiAuthor.search($scope.author_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.author_myparams.getdetailcallback = function(key) {
+		return ApiAuthor.get(key);
+    };
+	$scope.author_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for publisher ------ 
+    $scope.publisher_myparams = {};
+    $scope.publisher_myparams.pageSize = 5;	
+    $scope.publisher_myparams.paginated = true;
+    $scope.publisher_myparams.key = ApiStructure.getStructureKey("publisher");
+	$scope.publisher_myparams.detail = ApiStructure.getStructureDetail("publisher");
+	$scope.publisher_myparams.columns = ApiStructure.getStructureColumns("publisher");
+	$scope.publisher_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiPublisher.search($scope.publisher_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.publisher_myparams.getdetailcallback = function(key) {
+		return ApiPublisher.get(key);
+    };
+	$scope.publisher_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
 
-bookStorebook.controller('BookCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', '$http', 'ApiBook', function ($scope, $location, $routeParams, $rootScope, $http, ApiBook) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appbook.controller('BookCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBook', 'ApiStructure', 
+		'ApiAuthor',
+		'ApiPublisher',
+		function ($scope, $location, $routeParams, $rootScope, ApiBook, ApiStructure
+		, ApiAuthor
+		, ApiPublisher
+		) {
 	$rootScope.logMe("BookCreateCtrl");
 	$scope.onebook = {};
-
-	
-	setScopeForGrid($rootScope, $scope, $http);
-	
-
-	$scope.showList = false;
-	$scope.toogleShowList = function () {
-		if ($scope.showList === false) {
-			$scope.showList = true;
-		} else {
-			$scope.showList = false;
-		}
-	};
-	
 	
 	// Book save
 	$scope.saveBook = function () {
@@ -111,85 +148,38 @@ bookStorebook.controller('BookCreateCtrl', ['$scope', '$location', '$routeParams
 		$location.path("/book");
 	};
 
+	// ------ Directive configuration for author ------ 
+    $scope.author_myparams = {};
+    $scope.author_myparams.pageSize = 5;	
+    $scope.author_myparams.paginated = true;
+    $scope.author_myparams.key = ApiStructure.getStructureKey("author");
+	$scope.author_myparams.detail = ApiStructure.getStructureDetail("author");
+	$scope.author_myparams.columns = ApiStructure.getStructureColumns("author");
+	$scope.author_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiAuthor.search($scope.author_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.author_myparams.getdetailcallback = function(key) {
+		return ApiAuthor.get(key);
+    };
+	$scope.author_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for publisher ------ 
+    $scope.publisher_myparams = {};
+    $scope.publisher_myparams.pageSize = 5;	
+    $scope.publisher_myparams.paginated = true;
+    $scope.publisher_myparams.key = ApiStructure.getStructureKey("publisher");
+	$scope.publisher_myparams.detail = ApiStructure.getStructureDetail("publisher");
+	$scope.publisher_myparams.columns = ApiStructure.getStructureColumns("publisher");
+	$scope.publisher_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiPublisher.search($scope.publisher_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.publisher_myparams.getdetailcallback = function(key) {
+		return ApiPublisher.get(key);
+    };
+	$scope.publisher_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
-
-// Encapsuler le composant
-var setScopeForGrid = function ($rootScope, $scope, $http) {
-	
-	$scope.totalServerItems = 0;
-
-    $scope.filterOptions = {
-        filterText: "",
-        useExternalFilter: true
-    }; 
-    
-    $scope.pagingOptions = {
-        pageSizes: [10, 25, 50],
-        pageSize: 10,
-        currentPage: 1
-    };
-    
-    $scope.setPagingData = function(data, page, pageSize){	
-        var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
-        $scope.myData = pagedData;
-        $scope.totalServerItems = data.length;
-        if (!$scope.$$phase) {
-            $scope.$apply();
-        }
-    };
-    
-    $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-    	// TODO remplacer cette partie
-        setTimeout(function () {
-            var data;
-            if (searchText) {
-                var ft = searchText.toLowerCase();
-                $http.get('gen/pages/book/largeLoad.json').success(function (largeLoad) {
-                    data = largeLoad.filter(function(item) {
-                        return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
-                    });
-                    $scope.setPagingData(data,page,pageSize);
-                });
-            } else {
-                $http.get('gen/pages/book/largeLoad.json').success(function (largeLoad) {
-                    $scope.setPagingData(largeLoad,page,pageSize);
-                });
-            }
-        }, 100);
-    };
-
-    // init
-    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
-	
-    // observation de pagingOptions
-    $scope.$watch('pagingOptions', function (newVal, oldVal) {
-        if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
-          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
-        }
-    }, true);
-    
-    // observation de filterOptions
-    $scope.$watch('filterOptions', function (newVal, oldVal) {
-        if (newVal !== oldVal) {
-          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
-        }
-    }, true);
-	
-    $scope.gridOptions = {
-        data: 'myData',
-        enablePaging: true,
-		showFooter: true,
-        totalServerItems: 'totalServerItems',
-        pagingOptions: $scope.pagingOptions,
-        filterOptions: $scope.filterOptions,
-        multiSelect: false,
-        selectedItems: [],
-        afterSelectionChange: function (rowItem) {
-        	if ((rowItem) && (rowItem.selected === true)) {
-        		
-            	$rootScope.logMe($scope.gridOptions.selectedItems[0].name);
-        	}
-        }
-    };
-    
-};

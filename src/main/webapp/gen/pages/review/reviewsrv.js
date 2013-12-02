@@ -1,6 +1,6 @@
 
 // Review services
-var bookServicesModule = angular.module('bookStore.review.services', ['bookStore.storage.services']).factory('ApiReview', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.review.services', ['app.storage.services']).factory('ApiReview', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("review srv get " + id);

@@ -1,0 +1,33 @@
+
+<div id="authorCreate" data-ng-controller="AuthorCreateCtrl">
+ 
+    <h2>Author Create</h2>
+ 
+ 	<form class="form-horizontal">
+ 	
+	 		<div class="control-group">
+			<label class="control-label" for="id">id</label>
+			<div class="controls">
+				<input type="text" id="id" data-ng-model="oneauthor.id" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="firstName">firstName</label>
+			<div class="controls">
+				<input type="text" id="firstName" data-ng-model="oneauthor.firstName" />
+			</div>
+		</div>
+  	 		<div class="control-group">
+			<label class="control-label" for="lastName">lastName</label>
+			<div class="controls">
+				<input type="text" id="lastName" data-ng-model="oneauthor.lastName" />
+			</div>
+		</div>
+  	
+	</form>
+
+ 	<br />
+    <button id="saveAuthorBtn" data-ng-click="saveAuthor()">Save</button>
+	<button data-ng-click="openListAuthorPage()">Return to list</button>
+  
+</div>

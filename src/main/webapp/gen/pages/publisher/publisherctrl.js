@@ -1,6 +1,6 @@
 
-// publisher module add into global module (see mainctrl.js)
-var bookStorepublisher = angular.module('bookStore.publisher', ['bookStore.publisher.services'], function($routeProvider, $locationProvider) {
+// publisher module add into global module (see app.js)
+var apppublisher = angular.module('app.publisher', ['app.publisher.services'], function($routeProvider, $locationProvider) {
 
 	// publisher list
 	$routeProvider.when('/publisher', {
@@ -19,12 +19,14 @@ var bookStorepublisher = angular.module('bookStore.publisher', ['bookStore.publi
 
 });
 
-// publisher Controllers
-bookStorepublisher.controller('PublisherListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiPublisher', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiPublisher, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+apppublisher.controller('PublisherListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiPublisher', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiPublisher, ApiStorage) {
 	$rootScope.logMe("PublisherListCtrl");
 	var self = this;
 	
-	$scope.publishers = ApiPublisher.search();
+	var listTmp = ApiPublisher.search();
+	$scope.publishers = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Publisher call
@@ -36,7 +38,12 @@ bookStorepublisher.controller('PublisherListCtrl', ['$scope', '$location', '$rou
 }]);
 
 
-bookStorepublisher.controller('PublisherDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiPublisher', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiPublisher, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+apppublisher.controller('PublisherDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiPublisher', 'ApiStructure', 
+		'ApiCountry',
+		function ($scope, $location, $routeParams, $rootScope, ApiPublisher, ApiStructure
+		, ApiCountry
+		) {
 	$rootScope.logMe("PublisherDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -74,9 +81,32 @@ bookStorepublisher.controller('PublisherDetailCtrl', ['$scope', '$location', '$r
 		$location.path("/publisher");
 	};
 
+	// ------ Directive configuration for country ------ 
+    $scope.country_myparams = {};
+    $scope.country_myparams.pageSize = 5;	
+    $scope.country_myparams.paginated = true;
+    $scope.country_myparams.key = ApiStructure.getStructureKey("country");
+	$scope.country_myparams.detail = ApiStructure.getStructureDetail("country");
+	$scope.country_myparams.columns = ApiStructure.getStructureColumns("country");
+	$scope.country_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCountry.search($scope.country_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.country_myparams.getdetailcallback = function(key) {
+		return ApiCountry.get(key);
+    };
+	$scope.country_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
 
-bookStorepublisher.controller('PublisherCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiPublisher', function ($scope, $location, $routeParams, $rootScope, ApiPublisher) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+apppublisher.controller('PublisherCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiPublisher', 'ApiStructure', 
+		'ApiCountry',
+		function ($scope, $location, $routeParams, $rootScope, ApiPublisher, ApiStructure
+		, ApiCountry
+		) {
 	$rootScope.logMe("PublisherCreateCtrl");
 	$scope.onepublisher = {};
 	
@@ -96,5 +126,22 @@ bookStorepublisher.controller('PublisherCreateCtrl', ['$scope', '$location', '$r
 		$rootScope.logMe("openListPublisherPage");
 		$location.path("/publisher");
 	};
+
+	// ------ Directive configuration for country ------ 
+    $scope.country_myparams = {};
+    $scope.country_myparams.pageSize = 5;	
+    $scope.country_myparams.paginated = true;
+    $scope.country_myparams.key = ApiStructure.getStructureKey("country");
+	$scope.country_myparams.detail = ApiStructure.getStructureDetail("country");
+	$scope.country_myparams.columns = ApiStructure.getStructureColumns("country");
+	$scope.country_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCountry.search($scope.country_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.country_myparams.getdetailcallback = function(key) {
+		return ApiCountry.get(key);
+    };
+	$scope.country_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
 
 }]);

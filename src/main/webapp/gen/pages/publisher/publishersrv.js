@@ -1,6 +1,6 @@
 
 // Publisher services
-var bookServicesModule = angular.module('bookStore.publisher.services', ['bookStore.storage.services']).factory('ApiPublisher', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.publisher.services', ['app.storage.services']).factory('ApiPublisher', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("publisher srv get " + id);

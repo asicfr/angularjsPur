@@ -1,6 +1,6 @@
 
 // BookOrder services
-var bookServicesModule = angular.module('bookStore.bookorder.services', ['bookStore.storage.services']).factory('ApiBookOrder', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.bookorder.services', ['app.storage.services']).factory('ApiBookOrder', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("bookorder srv get " + id);

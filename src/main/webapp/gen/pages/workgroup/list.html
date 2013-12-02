@@ -7,27 +7,27 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>id</th>
-					      <th>name</th>
-					      <th>description</th>
-					      <th>creationDate</th>
-				    </tr>
+		      <th>id</th>
+		      <th>name</th>
+		      <th>description</th>
+		      <th>creationDate</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in workgroups">
-				      		<td>
-	      			<a href="#/workgroup/{{key}}">{{value.id}}</a>
+        <tr data-ng-repeat="workgroup in workgroups">
+	      		<td>
+	      			<a href="#/workgroup/{{workgroup.id}}">{{workgroup.id}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/workgroup/{{key}}">{{value.name}}</a>
+	      		<td>
+	      			<a href="#/workgroup/{{workgroup.id}}">{{workgroup.name}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/workgroup/{{key}}">{{value.description}}</a>
+	      		<td>
+	      			<a href="#/workgroup/{{workgroup.id}}">{{workgroup.description}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/workgroup/{{key}}">{{value.creationDate}}</a>
+	      		<td>
+	      			<a href="#/workgroup/{{workgroup.id}}">{{workgroup.creationDate}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

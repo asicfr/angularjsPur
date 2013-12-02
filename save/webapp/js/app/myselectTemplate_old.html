@@ -1,0 +1,36 @@
+<div data-ng-hide="showlist" data-ng-click="toggleList()" title="click to select an other element">
+	<ul class="hand mydetail-th">
+		<li data-ng-repeat="oneprop in ngParams.detail">
+			{{oneprop.label}} : {{detailmodel[oneprop.key]}}
+		</li>
+	</ul>
+</div>
+<div data-ng-show="showlist">
+	<input data-ng-model="searchText" data-ng-change="applyfiltre(datas.currentpageindex, searchText)" placeholder="Filter la liste" />
+	<button data-ng-click="toggleList()">
+	  Close List
+	</button>        
+	<ul class="mytable-th">
+		<li data-ng-repeat="oneparam in ngParams.columns">
+			{{oneparam.label}}
+		</li>
+	</ul>
+	<ul data-ng-repeat="onerecord in datas.datapage" 
+		data-ng-click="onSelect(onerecord)" 
+		data-ng-class="processStyle(onerecord, ngModelkey, ngParams.key, $index)">
+		<li data-ng-repeat="oneparam in ngParams.columns">
+			{{onerecord[oneparam.key]}}
+		</li>
+	</ul>
+	<ul class="mytable-th">
+		<li class="hand" data-ng-click="previousPage(datas.currentpageindex, searchText)">
+			previous page
+		</li>  
+		<li>
+			page : {{datas.currentpageindex}} / {{datas.maxpageindex}}
+		</li>
+		<li class="hand" data-ng-click="nextPage(datas.currentpageindex, searchText)">
+			next page
+		</li>
+	</ul>
+</div>

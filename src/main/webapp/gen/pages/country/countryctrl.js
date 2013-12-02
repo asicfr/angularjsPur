@@ -1,6 +1,6 @@
 
-// country module add into global module (see mainctrl.js)
-var bookStorecountry = angular.module('bookStore.country', ['bookStore.country.services'], function($routeProvider, $locationProvider) {
+// country module add into global module (see app.js)
+var appcountry = angular.module('app.country', ['app.country.services'], function($routeProvider, $locationProvider) {
 
 	// country list
 	$routeProvider.when('/country', {
@@ -19,12 +19,14 @@ var bookStorecountry = angular.module('bookStore.country', ['bookStore.country.s
 
 });
 
-// country Controllers
-bookStorecountry.controller('CountryListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCountry', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiCountry, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appcountry.controller('CountryListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCountry', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiCountry, ApiStorage) {
 	$rootScope.logMe("CountryListCtrl");
 	var self = this;
 	
-	$scope.countrys = ApiCountry.search();
+	var listTmp = ApiCountry.search();
+	$scope.countrys = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Country call
@@ -36,7 +38,10 @@ bookStorecountry.controller('CountryListCtrl', ['$scope', '$location', '$routePa
 }]);
 
 
-bookStorecountry.controller('CountryDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCountry', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiCountry, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appcountry.controller('CountryDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCountry', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiCountry, ApiStructure
+		) {
 	$rootScope.logMe("CountryDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -76,7 +81,11 @@ bookStorecountry.controller('CountryDetailCtrl', ['$scope', '$location', '$route
 
 }]);
 
-bookStorecountry.controller('CountryCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCountry', function ($scope, $location, $routeParams, $rootScope, ApiCountry) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appcountry.controller('CountryCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiCountry', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiCountry, ApiStructure
+		) {
 	$rootScope.logMe("CountryCreateCtrl");
 	$scope.onecountry = {};
 	

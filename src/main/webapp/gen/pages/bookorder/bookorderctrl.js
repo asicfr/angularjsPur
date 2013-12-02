@@ -1,6 +1,6 @@
 
-// bookorder module add into global module (see mainctrl.js)
-var bookStorebookorder = angular.module('bookStore.bookorder', ['bookStore.bookorder.services'], function($routeProvider, $locationProvider) {
+// bookorder module add into global module (see app.js)
+var appbookorder = angular.module('app.bookorder', ['app.bookorder.services'], function($routeProvider, $locationProvider) {
 
 	// bookorder list
 	$routeProvider.when('/bookorder', {
@@ -19,12 +19,14 @@ var bookStorebookorder = angular.module('bookStore.bookorder', ['bookStore.booko
 
 });
 
-// bookorder Controllers
-bookStorebookorder.controller('BookOrderListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBookOrder', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBookOrder, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appbookorder.controller('BookOrderListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBookOrder', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBookOrder, ApiStorage) {
 	$rootScope.logMe("BookOrderListCtrl");
 	var self = this;
 	
-	$scope.bookorders = ApiBookOrder.search();
+	var listTmp = ApiBookOrder.search();
+	$scope.bookorders = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new BookOrder call
@@ -36,7 +38,16 @@ bookStorebookorder.controller('BookOrderListCtrl', ['$scope', '$location', '$rou
 }]);
 
 
-bookStorebookorder.controller('BookOrderDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBookOrder', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBookOrder, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appbookorder.controller('BookOrderDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBookOrder', 'ApiStructure', 
+		'ApiShop',
+		'ApiEmployee',
+		'ApiCustomer',
+		function ($scope, $location, $routeParams, $rootScope, ApiBookOrder, ApiStructure
+		, ApiShop
+		, ApiEmployee
+		, ApiCustomer
+		) {
 	$rootScope.logMe("BookOrderDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -74,9 +85,70 @@ bookStorebookorder.controller('BookOrderDetailCtrl', ['$scope', '$location', '$r
 		$location.path("/bookorder");
 	};
 
+	// ------ Directive configuration for shop ------ 
+    $scope.shop_myparams = {};
+    $scope.shop_myparams.pageSize = 5;	
+    $scope.shop_myparams.paginated = true;
+    $scope.shop_myparams.key = ApiStructure.getStructureKey("shop");
+	$scope.shop_myparams.detail = ApiStructure.getStructureDetail("shop");
+	$scope.shop_myparams.columns = ApiStructure.getStructureColumns("shop");
+	$scope.shop_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiShop.search($scope.shop_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.shop_myparams.getdetailcallback = function(key) {
+		return ApiShop.get(key);
+    };
+	$scope.shop_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for employee ------ 
+    $scope.employee_myparams = {};
+    $scope.employee_myparams.pageSize = 5;	
+    $scope.employee_myparams.paginated = true;
+    $scope.employee_myparams.key = ApiStructure.getStructureKey("employee");
+	$scope.employee_myparams.detail = ApiStructure.getStructureDetail("employee");
+	$scope.employee_myparams.columns = ApiStructure.getStructureColumns("employee");
+	$scope.employee_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiEmployee.search($scope.employee_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.employee_myparams.getdetailcallback = function(key) {
+		return ApiEmployee.get(key);
+    };
+	$scope.employee_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for customer ------ 
+    $scope.customer_myparams = {};
+    $scope.customer_myparams.pageSize = 5;	
+    $scope.customer_myparams.paginated = true;
+    $scope.customer_myparams.key = ApiStructure.getStructureKey("customer");
+	$scope.customer_myparams.detail = ApiStructure.getStructureDetail("customer");
+	$scope.customer_myparams.columns = ApiStructure.getStructureColumns("customer");
+	$scope.customer_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCustomer.search($scope.customer_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.customer_myparams.getdetailcallback = function(key) {
+		return ApiCustomer.get(key);
+    };
+	$scope.customer_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
 
-bookStorebookorder.controller('BookOrderCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBookOrder', function ($scope, $location, $routeParams, $rootScope, ApiBookOrder) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appbookorder.controller('BookOrderCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBookOrder', 'ApiStructure', 
+		'ApiShop',
+		'ApiEmployee',
+		'ApiCustomer',
+		function ($scope, $location, $routeParams, $rootScope, ApiBookOrder, ApiStructure
+		, ApiShop
+		, ApiEmployee
+		, ApiCustomer
+		) {
 	$rootScope.logMe("BookOrderCreateCtrl");
 	$scope.onebookorder = {};
 	
@@ -96,5 +168,56 @@ bookStorebookorder.controller('BookOrderCreateCtrl', ['$scope', '$location', '$r
 		$rootScope.logMe("openListBookOrderPage");
 		$location.path("/bookorder");
 	};
+
+	// ------ Directive configuration for shop ------ 
+    $scope.shop_myparams = {};
+    $scope.shop_myparams.pageSize = 5;	
+    $scope.shop_myparams.paginated = true;
+    $scope.shop_myparams.key = ApiStructure.getStructureKey("shop");
+	$scope.shop_myparams.detail = ApiStructure.getStructureDetail("shop");
+	$scope.shop_myparams.columns = ApiStructure.getStructureColumns("shop");
+	$scope.shop_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiShop.search($scope.shop_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.shop_myparams.getdetailcallback = function(key) {
+		return ApiShop.get(key);
+    };
+	$scope.shop_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for employee ------ 
+    $scope.employee_myparams = {};
+    $scope.employee_myparams.pageSize = 5;	
+    $scope.employee_myparams.paginated = true;
+    $scope.employee_myparams.key = ApiStructure.getStructureKey("employee");
+	$scope.employee_myparams.detail = ApiStructure.getStructureDetail("employee");
+	$scope.employee_myparams.columns = ApiStructure.getStructureColumns("employee");
+	$scope.employee_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiEmployee.search($scope.employee_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.employee_myparams.getdetailcallback = function(key) {
+		return ApiEmployee.get(key);
+    };
+	$scope.employee_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for customer ------ 
+    $scope.customer_myparams = {};
+    $scope.customer_myparams.pageSize = 5;	
+    $scope.customer_myparams.paginated = true;
+    $scope.customer_myparams.key = ApiStructure.getStructureKey("customer");
+	$scope.customer_myparams.detail = ApiStructure.getStructureDetail("customer");
+	$scope.customer_myparams.columns = ApiStructure.getStructureColumns("customer");
+	$scope.customer_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCustomer.search($scope.customer_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.customer_myparams.getdetailcallback = function(key) {
+		return ApiCustomer.get(key);
+    };
+	$scope.customer_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
 
 }]);

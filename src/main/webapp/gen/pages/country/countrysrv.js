@@ -1,6 +1,6 @@
 
 // Country services
-var bookServicesModule = angular.module('bookStore.country.services', ['bookStore.storage.services']).factory('ApiCountry', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.country.services', ['app.storage.services']).factory('ApiCountry', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("country srv get " + id);

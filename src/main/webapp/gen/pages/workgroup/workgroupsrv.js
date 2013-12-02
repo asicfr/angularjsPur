@@ -1,6 +1,6 @@
 
 // Workgroup services
-var bookServicesModule = angular.module('bookStore.workgroup.services', ['bookStore.storage.services']).factory('ApiWorkgroup', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.workgroup.services', ['app.storage.services']).factory('ApiWorkgroup', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("workgroup srv get " + id);

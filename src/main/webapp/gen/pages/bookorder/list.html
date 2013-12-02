@@ -7,35 +7,35 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>id</th>
-					      <th>shopCode</th>
-					      <th>customerCode</th>
-					      <th>employeeCode</th>
-					      <th>date</th>
-					      <th>state</th>
-				    </tr>
+		      <th>id</th>
+		      <th>shopCode</th>
+		      <th>customerCode</th>
+		      <th>employeeCode</th>
+		      <th>date</th>
+		      <th>state</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in bookorders">
-				      		<td>
-	      			<a href="#/bookorder/{{key}}">{{value.id}}</a>
+        <tr data-ng-repeat="bookorder in bookorders">
+	      		<td>
+	      			<a href="#/bookorder/{{bookorder.id}}">{{bookorder.id}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/bookorder/{{key}}">{{value.shopCode}}</a>
+	      		<td>
+	      			<a href="#/bookorder/{{bookorder.id}}">{{bookorder.shopCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/bookorder/{{key}}">{{value.customerCode}}</a>
+	      		<td>
+	      			<a href="#/bookorder/{{bookorder.id}}">{{bookorder.customerCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/bookorder/{{key}}">{{value.employeeCode}}</a>
+	      		<td>
+	      			<a href="#/bookorder/{{bookorder.id}}">{{bookorder.employeeCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/bookorder/{{key}}">{{value.date}}</a>
+	      		<td>
+	      			<a href="#/bookorder/{{bookorder.id}}">{{bookorder.date}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/bookorder/{{key}}">{{value.state}}</a>
+	      		<td>
+	      			<a href="#/bookorder/{{bookorder.id}}">{{bookorder.state}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

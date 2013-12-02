@@ -1,0 +1,93 @@
+// Datastore structure
+var storageStructureModule = angular.module('app.structure.services', []);
+storageStructureModule.factory('ApiStructure', function(${DOLLAR}rootScope, ${DOLLAR}http) {
+
+	var defaultStructure = {};
+
+#foreach ( $entityClass in $selectedEntities )
+
+// ------------------------------------------------------------------------	
+## PROCESS KEY DESCRIPTION (COMPOSITE PRIMARY KEY OR NOT) 
+#if ( $entityClass.hasCompositePrimaryKey() )
+#set ( $KEY_COUNT = 0 )
+	defaultStructure.${entityClass.name.toLowerCase()} = {};
+	defaultStructure.${entityClass.name.toLowerCase()}.label = "${entityClass.name.toLowerCase()}";
+	defaultStructure.${entityClass.name.toLowerCase()}.key = [
+#foreach( $field in $entityClass.keyAttributes )
+#if (  $KEY_COUNT > 0 )
+								,"$field.name"
+#else
+								"$field.name"
+#end
+#set ( $KEY_COUNT = $KEY_COUNT + 1 )
+#end
+						];
+#else
+	defaultStructure.${entityClass.name.toLowerCase()} = {};
+	defaultStructure.${entityClass.name.toLowerCase()}.label = "${entityClass.name.toLowerCase()}";
+#foreach( $field in $entityClass.keyAttributes )
+	defaultStructure.${entityClass.name.toLowerCase()}.key = "$field.name";
+#end
+#end
+
+
+	defaultStructure.${entityClass.name.toLowerCase()}.detail = [
+#set ( $FIELD_COUNT = 0 )
+#foreach( $field in $entityClass.attributes )
+#if (  $FIELD_COUNT > 0 )
+		,{"key":"${field.name}", "label":"${field.name}"} 
+#else
+		{"key":"${field.name}", "label":"${field.name}"} 
+#end
+#set ( $FIELD_COUNT = $FIELD_COUNT + 1 )
+#end
+	];
+
+	defaultStructure.${entityClass.name.toLowerCase()}.columns = [
+#set ( $FIELD_COUNT = 0 )
+#foreach( $field in $entityClass.attributes )
+#if (  $FIELD_COUNT > 0 )
+		,{"key":"${field.name}", "label":"${field.name}"}
+#else
+		{"key":"${field.name}", "label":"${field.name}"}
+#end
+#set ( $FIELD_COUNT = $FIELD_COUNT + 1 )
+#end
+	];
+#end
+
+	// ---------------------------------------------------------------------------------------------------
+	// methodes
+	return {
+		getStructure: function (entityName) {
+			if (defaultStructure.hasOwnProperty(entityName)) {
+				return defaultStructure[entityName];
+			} else {
+				return null;
+			}
+		},
+		getStructureKey: function (entityName) {
+			if (defaultStructure.hasOwnProperty(entityName)) {
+				return defaultStructure[entityName].key;
+			} else {
+				return null;
+			}
+		},
+		getStructureDetail: function (entityName) {
+			if (defaultStructure.hasOwnProperty(entityName)) {
+				return defaultStructure[entityName].detail;
+			} else {
+				return null;
+			}
+		},
+		getStructureColumns: function (entityName) {
+			if (defaultStructure.hasOwnProperty(entityName)) {
+				return defaultStructure[entityName].columns;
+			} else {
+				return null;
+			}
+		}
+	};
+	
+});
+

@@ -1,6 +1,6 @@
 
-// synopsis module add into global module (see mainctrl.js)
-var bookStoresynopsis = angular.module('bookStore.synopsis', ['bookStore.synopsis.services'], function($routeProvider, $locationProvider) {
+// synopsis module add into global module (see app.js)
+var appsynopsis = angular.module('app.synopsis', ['app.synopsis.services'], function($routeProvider, $locationProvider) {
 
 	// synopsis list
 	$routeProvider.when('/synopsis', {
@@ -19,12 +19,14 @@ var bookStoresynopsis = angular.module('bookStore.synopsis', ['bookStore.synopsi
 
 });
 
-// synopsis Controllers
-bookStoresynopsis.controller('SynopsisListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiSynopsis', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiSynopsis, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appsynopsis.controller('SynopsisListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiSynopsis', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiSynopsis, ApiStorage) {
 	$rootScope.logMe("SynopsisListCtrl");
 	var self = this;
 	
-	$scope.synopsiss = ApiSynopsis.search();
+	var listTmp = ApiSynopsis.search();
+	$scope.synopsiss = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Synopsis call
@@ -36,7 +38,12 @@ bookStoresynopsis.controller('SynopsisListCtrl', ['$scope', '$location', '$route
 }]);
 
 
-bookStoresynopsis.controller('SynopsisDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiSynopsis', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiSynopsis, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appsynopsis.controller('SynopsisDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiSynopsis', 'ApiStructure', 
+		'ApiBook',
+		function ($scope, $location, $routeParams, $rootScope, ApiSynopsis, ApiStructure
+		, ApiBook
+		) {
 	$rootScope.logMe("SynopsisDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -74,9 +81,32 @@ bookStoresynopsis.controller('SynopsisDetailCtrl', ['$scope', '$location', '$rou
 		$location.path("/synopsis");
 	};
 
+	// ------ Directive configuration for book ------ 
+    $scope.book_myparams = {};
+    $scope.book_myparams.pageSize = 5;	
+    $scope.book_myparams.paginated = true;
+    $scope.book_myparams.key = ApiStructure.getStructureKey("book");
+	$scope.book_myparams.detail = ApiStructure.getStructureDetail("book");
+	$scope.book_myparams.columns = ApiStructure.getStructureColumns("book");
+	$scope.book_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiBook.search($scope.book_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.book_myparams.getdetailcallback = function(key) {
+		return ApiBook.get(key);
+    };
+	$scope.book_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
 
-bookStoresynopsis.controller('SynopsisCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiSynopsis', function ($scope, $location, $routeParams, $rootScope, ApiSynopsis) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appsynopsis.controller('SynopsisCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiSynopsis', 'ApiStructure', 
+		'ApiBook',
+		function ($scope, $location, $routeParams, $rootScope, ApiSynopsis, ApiStructure
+		, ApiBook
+		) {
 	$rootScope.logMe("SynopsisCreateCtrl");
 	$scope.onesynopsis = {};
 	
@@ -96,5 +126,22 @@ bookStoresynopsis.controller('SynopsisCreateCtrl', ['$scope', '$location', '$rou
 		$rootScope.logMe("openListSynopsisPage");
 		$location.path("/synopsis");
 	};
+
+	// ------ Directive configuration for book ------ 
+    $scope.book_myparams = {};
+    $scope.book_myparams.pageSize = 5;	
+    $scope.book_myparams.paginated = true;
+    $scope.book_myparams.key = ApiStructure.getStructureKey("book");
+	$scope.book_myparams.detail = ApiStructure.getStructureDetail("book");
+	$scope.book_myparams.columns = ApiStructure.getStructureColumns("book");
+	$scope.book_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiBook.search($scope.book_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.book_myparams.getdetailcallback = function(key) {
+		return ApiBook.get(key);
+    };
+	$scope.book_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
 
 }]);

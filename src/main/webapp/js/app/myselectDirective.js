@@ -1,5 +1,9 @@
-
-angular.module('telosysDirectives', []).directive('myselect', function() {
+/*
+ myselect directive
+ (c) 2010-2013 @asicfr
+ License: MIT
+*/
+angular.module('selectDirective', []).directive('myselect', function() {
   return {
     scope: {
       ngParams: '=',

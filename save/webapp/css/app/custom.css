@@ -1,0 +1,69 @@
+.gridStyle {
+	border: 1px solid rgb(212, 212, 212);
+	height: 300px
+}
+
+.mydetail-th {
+	display: block;
+	width: 100%;
+	background-color: #eee;
+}
+
+.mytable-th {
+	margin: 0;
+	padding: 0;
+	display: table;
+	width: 100%;
+	background-color: #9CD5EC;
+}
+
+.mytable-th li {
+	display: table-cell;
+	width: 25%;
+	text-align: center;
+	border: 1px #9CD5EC;
+	padding: 3px;
+}
+
+.mytable-tr {
+	margin: 0;
+	padding: 0;
+	display: table;
+	width: 100%;
+	cursor: pointer;
+}
+
+.mytable-tr:hover {
+	background-color: yellow;
+}
+
+.mytable-tr li {
+	display: table-cell;
+	width: 25%;
+	text-align: center;
+	border-width: 1px;
+	border-style: outset;
+	border-color: #98bf21;
+}
+
+/* ----------------------------------------------- */
+.currentRow {
+	background-color: #d79a38;
+}
+
+.rowOdd {
+	background-color: #eee;
+}
+
+.rowEven {
+	background-color: #fff;
+}
+
+/* ----------------------------------------------- */
+.hand {
+	cursor: pointer;
+}
+
+.hand:hover {
+	background-color: yellow;
+}

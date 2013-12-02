@@ -7,18 +7,25 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-			#foreach( $field in $beanClass.attributes )
+#foreach( $field in $beanClass.attributes )
 		      <th>${field.name}</th>
-			#end
+#end
 	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in ${beanClass.name.toLowerCase()}s">
-			#foreach( $field in $beanClass.attributes )
+        <tr data-ng-repeat="${beanClass.name.toLowerCase()} in ${beanClass.name.toLowerCase()}s">
+#foreach( $field in $beanClass.attributes )
 	      		<td>
-	      			<a href="${SHARP}/${beanClass.name.toLowerCase()}/{{key}}">{{value.${field.name}}}</a>
+#if ( $beanClass.hasCompositePrimaryKey() )
+					// Comment faire un lien avec une cle composite ??????????? enchainer les parties de clés ?
+
+#else
+#foreach( $onekey in $beanClass.keyAttributes )
+	      			<a href="${SHARP}/${beanClass.name.toLowerCase()}/{{${beanClass.name.toLowerCase()}.${onekey.name}}}">{{${beanClass.name.toLowerCase()}.${field.name}}}</a>
+#end
+#end
 	      		</td>
-		  	#end
+#end
 	    </tr>
 	  </tbody>
 	</table>

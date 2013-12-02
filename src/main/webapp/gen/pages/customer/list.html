@@ -7,55 +7,55 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>code</th>
-					      <th>countryCode</th>
-					      <th>firstName</th>
-					      <th>lastName</th>
-					      <th>login</th>
-					      <th>password</th>
-					      <th>age</th>
-					      <th>city</th>
-					      <th>zipCode</th>
-					      <th>phone</th>
-					      <th>reviewer</th>
-				    </tr>
+		      <th>code</th>
+		      <th>countryCode</th>
+		      <th>firstName</th>
+		      <th>lastName</th>
+		      <th>login</th>
+		      <th>password</th>
+		      <th>age</th>
+		      <th>city</th>
+		      <th>zipCode</th>
+		      <th>phone</th>
+		      <th>reviewer</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in customers">
-				      		<td>
-	      			<a href="#/customer/{{key}}">{{value.code}}</a>
+        <tr data-ng-repeat="customer in customers">
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.code}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.countryCode}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.countryCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.firstName}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.firstName}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.lastName}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.lastName}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.login}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.login}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.password}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.password}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.age}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.age}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.city}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.city}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.zipCode}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.zipCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.phone}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.phone}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/customer/{{key}}">{{value.reviewer}}</a>
+	      		<td>
+	      			<a href="#/customer/{{customer.code}}">{{customer.reviewer}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

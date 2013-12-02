@@ -7,43 +7,43 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>code</th>
-					      <th>countryCode</th>
-					      <th>name</th>
-					      <th>email</th>
-					      <th>contact</th>
-					      <th>city</th>
-					      <th>zipCode</th>
-					      <th>phone</th>
-				    </tr>
+		      <th>code</th>
+		      <th>countryCode</th>
+		      <th>name</th>
+		      <th>email</th>
+		      <th>contact</th>
+		      <th>city</th>
+		      <th>zipCode</th>
+		      <th>phone</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in publishers">
-				      		<td>
-	      			<a href="#/publisher/{{key}}">{{value.code}}</a>
+        <tr data-ng-repeat="publisher in publishers">
+	      		<td>
+	      			<a href="#/publisher/{{publisher.code}}">{{publisher.code}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/publisher/{{key}}">{{value.countryCode}}</a>
+	      		<td>
+	      			<a href="#/publisher/{{publisher.code}}">{{publisher.countryCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/publisher/{{key}}">{{value.name}}</a>
+	      		<td>
+	      			<a href="#/publisher/{{publisher.code}}">{{publisher.name}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/publisher/{{key}}">{{value.email}}</a>
+	      		<td>
+	      			<a href="#/publisher/{{publisher.code}}">{{publisher.email}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/publisher/{{key}}">{{value.contact}}</a>
+	      		<td>
+	      			<a href="#/publisher/{{publisher.code}}">{{publisher.contact}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/publisher/{{key}}">{{value.city}}</a>
+	      		<td>
+	      			<a href="#/publisher/{{publisher.code}}">{{publisher.city}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/publisher/{{key}}">{{value.zipCode}}</a>
+	      		<td>
+	      			<a href="#/publisher/{{publisher.code}}">{{publisher.zipCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/publisher/{{key}}">{{value.phone}}</a>
+	      		<td>
+	      			<a href="#/publisher/{{publisher.code}}">{{publisher.phone}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

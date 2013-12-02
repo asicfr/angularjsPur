@@ -7,51 +7,51 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>id</th>
-					      <th>publisherId</th>
-					      <th>authorId</th>
-					      <th>isbn</th>
-					      <th>title</th>
-					      <th>price</th>
-					      <th>quantity</th>
-					      <th>discount</th>
-					      <th>availability</th>
-					      <th>bestSeller</th>
-				    </tr>
+		      <th>id</th>
+		      <th>publisherId</th>
+		      <th>authorId</th>
+		      <th>isbn</th>
+		      <th>title</th>
+		      <th>price</th>
+		      <th>quantity</th>
+		      <th>discount</th>
+		      <th>availability</th>
+		      <th>bestSeller</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in books">
-				      		<td>
-	      			<a href="#/book/{{key}}">{{value.id}}</a>
+        <tr data-ng-repeat="book in books">
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.id}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.publisherId}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.publisherId}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.authorId}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.authorId}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.isbn}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.isbn}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.title}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.title}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.price}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.price}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.quantity}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.quantity}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.discount}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.discount}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.availability}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.availability}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/book/{{key}}">{{value.bestSeller}}</a>
+	      		<td>
+	      			<a href="#/book/{{book.id}}">{{book.bestSeller}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

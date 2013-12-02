@@ -2,56 +2,62 @@
 <div id="employeeEdit" data-ng-controller="EmployeeDetailCtrl">
  
     <h2>Employee Edit</h2>
-    
+ 
  	<form class="form-horizontal">
- 	
-	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="code">code</label>
 			<div class="controls">
 				<input type="text" id="code" data-ng-model="oneemployee.code" />
 			</div>
 		</div>
-  	 		<div class="control-group">
-			<label class="control-label" for="shopCode">shopCode</label>
-			<div class="controls">
-				<input type="text" id="shopCode" data-ng-model="oneemployee.shopCode" />
-			</div>
-		</div>
-  	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="firstName">firstName</label>
 			<div class="controls">
 				<input type="text" id="firstName" data-ng-model="oneemployee.firstName" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="lastName">lastName</label>
 			<div class="controls">
 				<input type="text" id="lastName" data-ng-model="oneemployee.lastName" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="manager">manager</label>
 			<div class="controls">
 				<input type="text" id="manager" data-ng-model="oneemployee.manager" />
 			</div>
 		</div>
-  	 		<div class="control-group">
-			<label class="control-label" for="badgeNumber">badgeNumber</label>
-			<div class="controls">
-				<input type="text" id="badgeNumber" data-ng-model="oneemployee.badgeNumber" />
-			</div>
-		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="email">email</label>
 			<div class="controls">
 				<input type="text" id="email" data-ng-model="oneemployee.email" />
 			</div>
 		</div>
-  	
+
+
+ 		<div class="control-group">
+			<label class="control-label">shop</label>
+			<div class="controls">
+				<myselect data-ng-params="shop_myparams" data-ng-modelkey="oneemployee.shop" ></myselect>
+			</div>
+		</div>
+ 		<div class="control-group">
+			<label class="control-label">badge</label>
+			<div class="controls">
+				<myselect data-ng-params="badge_myparams" data-ng-modelkey="oneemployee.badge" ></myselect>
+			</div>
+		</div>
+
+
+
 	</form>
+
  	<br />
     <button data-ng-click="updateEmployee()">Save</button>
     <button data-ng-click="removeEmployee()">Remove</button>
 	<button data-ng-click="openListEmployeePage()">Return to list</button>
- 
+  
 </div>

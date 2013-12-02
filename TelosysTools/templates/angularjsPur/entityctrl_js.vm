@@ -1,6 +1,6 @@
 
-// ${beanClass.name.toLowerCase()} module add into global module (see mainctrl.js)
-var bookStore${beanClass.name.toLowerCase()} = angular.module('bookStore.${beanClass.name.toLowerCase()}', ['bookStore.${beanClass.name.toLowerCase()}.services'], function(${DOLLAR}routeProvider, ${DOLLAR}locationProvider) {
+// ${beanClass.name.toLowerCase()} module add into global module (see app.js)
+var app${beanClass.name.toLowerCase()} = angular.module('app.${beanClass.name.toLowerCase()}', ['app.${beanClass.name.toLowerCase()}.services'], function(${DOLLAR}routeProvider, ${DOLLAR}locationProvider) {
 
 	// ${beanClass.name.toLowerCase()} list
 	${DOLLAR}routeProvider.when('/${beanClass.name.toLowerCase()}', {
@@ -19,12 +19,14 @@ var bookStore${beanClass.name.toLowerCase()} = angular.module('bookStore.${beanC
 
 });
 
-// ${beanClass.name.toLowerCase()} Controllers
-bookStore${beanClass.name.toLowerCase()}.controller('${beanClass.name}ListCtrl', ['${DOLLAR}scope', '${DOLLAR}location', '${DOLLAR}routeParams', '${DOLLAR}rootScope', 'Api${beanClass.name}', 'ApiStorage', function (${DOLLAR}scope, ${DOLLAR}location, ${DOLLAR}routeParams, ${DOLLAR}rootScope, Api${beanClass.name}, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+app${beanClass.name.toLowerCase()}.controller('${beanClass.name}ListCtrl', ['${DOLLAR}scope', '${DOLLAR}location', '${DOLLAR}routeParams', '${DOLLAR}rootScope', 'Api${beanClass.name}', 'ApiStorage', function (${DOLLAR}scope, ${DOLLAR}location, ${DOLLAR}routeParams, ${DOLLAR}rootScope, Api${beanClass.name}, ApiStorage) {
 	${DOLLAR}rootScope.logMe("${beanClass.name}ListCtrl");
 	var self = this;
 	
-	${DOLLAR}scope.${beanClass.name.toLowerCase()}s = Api${beanClass.name}.search();
+	var listTmp = Api${beanClass.name}.search();
+	${DOLLAR}scope.${beanClass.name.toLowerCase()}s = listTmp.datapage;
 	${DOLLAR}rootScope.logMe("search end");
 
 	// new ${beanClass.name} call
@@ -36,7 +38,24 @@ bookStore${beanClass.name.toLowerCase()}.controller('${beanClass.name}ListCtrl',
 }]);
 
 
-bookStore${beanClass.name.toLowerCase()}.controller('${beanClass.name}DetailCtrl', ['${DOLLAR}scope', '${DOLLAR}location', '${DOLLAR}routeParams', '${DOLLAR}rootScope', 'Api${beanClass.name}', 'ApiStorage', function (${DOLLAR}scope, ${DOLLAR}location, ${DOLLAR}routeParams, ${DOLLAR}rootScope, Api${beanClass.name}, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+app${beanClass.name.toLowerCase()}.controller('${beanClass.name}DetailCtrl', ['${DOLLAR}scope', '${DOLLAR}location', '${DOLLAR}routeParams', '${DOLLAR}rootScope', 'Api${beanClass.name}', 'ApiStructure', 
+#foreach( $link in $beanClass.selectedLinks )
+#if ( $link.isCardinalityOneToOne() || $link.isCardinalityManyToOne() )
+		'Api${link.targetEntity}',
+#else 
+## TODO many-to-many / one-to-many
+#end
+#end
+		function (${DOLLAR}scope, ${DOLLAR}location, ${DOLLAR}routeParams, ${DOLLAR}rootScope, Api${beanClass.name}, ApiStructure
+#foreach( $link in $beanClass.selectedLinks )
+#if ( $link.isCardinalityOneToOne() || $link.isCardinalityManyToOne() )
+		, Api${link.targetEntity}
+#else 
+## TODO many-to-many / one-to-many
+#end
+#end
+		) {
 	${DOLLAR}rootScope.logMe("${beanClass.name}DetailCtrl");
 	${DOLLAR}scope.idCurrent = ${DOLLAR}routeParams.id;
 	
@@ -74,9 +93,51 @@ bookStore${beanClass.name.toLowerCase()}.controller('${beanClass.name}DetailCtrl
 		${DOLLAR}location.path("/${beanClass.name.toLowerCase()}");
 	};
 
+## links .........................................
+#foreach( $link in $beanClass.selectedLinks )
+#if ( $link.isCardinalityOneToOne() || $link.isCardinalityManyToOne() )
+	// ------ Directive configuration for ${link.javaName} ------ 
+    ${DOLLAR}scope.${link.javaName}_myparams = {};
+    ${DOLLAR}scope.${link.javaName}_myparams.pageSize = 5;	
+    ${DOLLAR}scope.${link.javaName}_myparams.paginated = true;
+    ${DOLLAR}scope.${link.javaName}_myparams.key = ApiStructure.getStructureKey("${link.targetEntity.toLowerCase()}");
+	${DOLLAR}scope.${link.javaName}_myparams.detail = ApiStructure.getStructureDetail("${link.targetEntity.toLowerCase()}");
+	${DOLLAR}scope.${link.javaName}_myparams.columns = ApiStructure.getStructureColumns("${link.targetEntity.toLowerCase()}");
+	${DOLLAR}scope.${link.javaName}_myparams.getlistcallback = function(pageindex, filtre) {
+        return Api${link.targetEntity}.search(${DOLLAR}scope.${link.javaName}_myparams.pageSize, pageindex, filtre);
+    };
+	${DOLLAR}scope.${link.javaName}_myparams.getdetailcallback = function(key) {
+		return Api${link.targetEntity}.get(key);
+    };
+	${DOLLAR}scope.${link.javaName}_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+#else 
+## TODO many-to-many / one-to-many
+#end
+#end
 }]);
 
-bookStore${beanClass.name.toLowerCase()}.controller('${beanClass.name}CreateCtrl', ['${DOLLAR}scope', '${DOLLAR}location', '${DOLLAR}routeParams', '${DOLLAR}rootScope', 'Api${beanClass.name}', function (${DOLLAR}scope, ${DOLLAR}location, ${DOLLAR}routeParams, ${DOLLAR}rootScope, Api${beanClass.name}) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+app${beanClass.name.toLowerCase()}.controller('${beanClass.name}CreateCtrl', ['${DOLLAR}scope', '${DOLLAR}location', '${DOLLAR}routeParams', '${DOLLAR}rootScope', 'Api${beanClass.name}', 'ApiStructure', 
+#foreach( $link in $beanClass.selectedLinks )
+#if ( $link.isCardinalityOneToOne() || $link.isCardinalityManyToOne() )
+		'Api${link.targetEntity}',
+#else 
+## TODO many-to-many / one-to-many
+#end
+#end
+		function (${DOLLAR}scope, ${DOLLAR}location, ${DOLLAR}routeParams, ${DOLLAR}rootScope, Api${beanClass.name}, ApiStructure
+#foreach( $link in $beanClass.selectedLinks )
+#if ( $link.isCardinalityOneToOne() || $link.isCardinalityManyToOne() )
+		, Api${link.targetEntity}
+#else 
+## TODO many-to-many / one-to-many
+#end
+#end
+		) {
 	${DOLLAR}rootScope.logMe("${beanClass.name}CreateCtrl");
 	${DOLLAR}scope.one${beanClass.name.toLowerCase()} = {};
 	
@@ -97,4 +158,28 @@ bookStore${beanClass.name.toLowerCase()}.controller('${beanClass.name}CreateCtrl
 		${DOLLAR}location.path("/${beanClass.name.toLowerCase()}");
 	};
 
+## links .........................................
+#foreach( $link in $beanClass.selectedLinks )
+#if ( $link.isCardinalityOneToOne() || $link.isCardinalityManyToOne() )
+	// ------ Directive configuration for ${link.javaName} ------ 
+    ${DOLLAR}scope.${link.javaName}_myparams = {};
+    ${DOLLAR}scope.${link.javaName}_myparams.pageSize = 5;	
+    ${DOLLAR}scope.${link.javaName}_myparams.paginated = true;
+    ${DOLLAR}scope.${link.javaName}_myparams.key = ApiStructure.getStructureKey("${link.targetEntity.toLowerCase()}");
+	${DOLLAR}scope.${link.javaName}_myparams.detail = ApiStructure.getStructureDetail("${link.targetEntity.toLowerCase()}");
+	${DOLLAR}scope.${link.javaName}_myparams.columns = ApiStructure.getStructureColumns("${link.targetEntity.toLowerCase()}");
+	${DOLLAR}scope.${link.javaName}_myparams.getlistcallback = function(pageindex, filtre) {
+        return Api${link.targetEntity}.search(${DOLLAR}scope.${link.javaName}_myparams.pageSize, pageindex, filtre);
+    };
+	${DOLLAR}scope.${link.javaName}_myparams.getdetailcallback = function(key) {
+		return Api${link.targetEntity}.get(key);
+    };
+	${DOLLAR}scope.${link.javaName}_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+#else 
+## TODO many-to-many / one-to-many
+#end
+#end
 }]);

@@ -6,33 +6,24 @@ A voir:
 - [OK] mise à jours des dépendances
 - [OK] ménage des dépendances : supprimer localstorage, toastr ... 
 - [OK] un meme repertoire pour tout ce qui concerne une entite (js, html)
-- liaison avec autres entités : many-to-one / one-to-one
-	-> quel affichage / représentation d'une entité ? tous les champs sauf l'id et les foreign key ?
-	-> créer une directive simple affichant la liste des entités et permettant de selectionner un element
-	     http://plnkr.co/edit/WxfQK18uAr4QKRTw5JQL?p=preview
-	-> mettre en place une pagination et un filtrage/recherche
-	-> modifier le search de datastore.js pour qu'il accepte le start et le limit (pagination) 
-	-> une combo box si moins de 50 items
-	-> une popup de type "List Of Values (chez Oracle Forms)" si nombreux items
-- passer a bootstrap 3 !
-- renommer bookStore et bookStoremain en app et appmain dans la génération, pour etre plus generique
-- modifier la structure des repertoires : vendor ...
-- renommer mainctrl.js -> app.js
-- reproduire la structure de yeoman
-- angularjs resource ? REST ?
-- ng-grid pour mettre en place un tri et une pagination de la liste (voir Server-Side Paging http://angular-ui.github.io/ng-grid/)
-- mise en forme liste enregistrement
-- module des entités chargé dynamiquement ? separer le plus possible ? voir angular seed
+- [OK] supprimer $scope.$$phase par $timeout pour proteger le apply ?
+- [OK] supprimer la dependance ApiStorage dans les ctrl ! 
+- [OK] renommer app et appmain en app et appmain dans la génération, pour etre plus generique
+- [OK] liaison avec autres entités : many-to-one / one-to-one
+- [OK] modifier la structure des repertoires : vendor ...
+- [OK] renommer mainctrl.js -> app.js
+- reprendre les templates
 - champs typé html5
+- angularjs 1.2.0
+- bootstrap 3
+- liaison avec autres entités : one-to-many
+- reproduire la structure de yeoman
 - longueur des champs adaptée
 - fusion create.html et edit.html
 - structure du projet ? webapp java ? non
 - valider le fonctionnement meme si js compressés
 
 - schéma json avec contraintes et typage : http://geraintluff.github.io/tv4/
-- pagination ? hateoas avec filtre et limite ?
-- camel case libellés
-- libellé des entités
 
 
 - déjà avec des données ? comment les générer ?

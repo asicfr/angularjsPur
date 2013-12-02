@@ -2,32 +2,38 @@
 <div id="badgeEdit" data-ng-controller="BadgeDetailCtrl">
  
     <h2>Badge Edit</h2>
-    
+ 
  	<form class="form-horizontal">
- 	
-	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="badgeNumber">badgeNumber</label>
 			<div class="controls">
 				<input type="text" id="badgeNumber" data-ng-model="onebadge.badgeNumber" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="authorizationLevel">authorizationLevel</label>
 			<div class="controls">
 				<input type="text" id="authorizationLevel" data-ng-model="onebadge.authorizationLevel" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="endOfValidity">endOfValidity</label>
 			<div class="controls">
 				<input type="text" id="endOfValidity" data-ng-model="onebadge.endOfValidity" />
 			</div>
 		</div>
-  	
+
+
+
+
+
 	</form>
+
  	<br />
     <button data-ng-click="updateBadge()">Save</button>
     <button data-ng-click="removeBadge()">Remove</button>
 	<button data-ng-click="openListBadgePage()">Return to list</button>
- 
+  
 </div>

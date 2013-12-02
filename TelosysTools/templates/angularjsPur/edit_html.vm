@@ -1,23 +1,58 @@
+#set( $dataFields = $beanClass.getAttributesByCriteria( $const.NOT_KEY, $const.NOT_IN_SELECTED_LINKS ) )
 
 <div id="${beanClass.name.toLowerCase()}Edit" data-ng-controller="${beanClass.name}DetailCtrl">
  
     <h2>${beanClass.name} Edit</h2>
-    
+ 
  	<form class="form-horizontal">
- 	
-	#foreach( $field in $beanClass.attributes )
+
+## key .........................................
+#if ( $beanClass.hasCompositePrimaryKey() )
+## TODO composite key
+#else 
+#foreach( $field in $beanClass.keyAttributes )
  		<div class="control-group">
 			<label class="control-label" for="${field.name}">${field.name}</label>
 			<div class="controls">
 				<input type="text" id="${field.name}" data-ng-model="one${beanClass.name.toLowerCase()}.${field.name}" />
 			</div>
 		</div>
-  	#end
+#end
+#end
+
+## data fields .........................................
+#foreach( $field in $dataFields )
+ 		<div class="control-group">
+			<label class="control-label" for="${field.name}">${field.name}</label>
+			<div class="controls">
+				<input type="text" id="${field.name}" data-ng-model="one${beanClass.name.toLowerCase()}.${field.name}" />
+			</div>
+		</div>
+#end
+
+
+## links .........................................
+#foreach( $link in $beanClass.selectedLinks )
+#if ( $link.isCardinalityOneToOne() || $link.isCardinalityManyToOne() )
+ 		<div class="control-group">
+			<label class="control-label">${link.javaName}</label>
+			<div class="controls">
+				<myselect data-ng-params="${link.javaName}_myparams" data-ng-modelkey="one${beanClass.name.toLowerCase()}.${link.javaName}" ></myselect>
+			</div>
+		</div>
+#else 
+## TODO many-to-many / one-to-many
+#end
+#end
+
+
+## ------------------------------------------------------------------------------------------
 
 	</form>
+
  	<br />
     <button data-ng-click="update${beanClass.name}()">Save</button>
     <button data-ng-click="remove${beanClass.name}()">Remove</button>
 	<button data-ng-click="openList${beanClass.name}Page()">Return to list</button>
- 
+  
 </div>

@@ -1,6 +1,6 @@
 
 // Author services
-var bookServicesModule = angular.module('bookStore.author.services', ['bookStore.storage.services']).factory('ApiAuthor', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.author.services', ['app.storage.services']).factory('ApiAuthor', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("author srv get " + id);

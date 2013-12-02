@@ -1,6 +1,6 @@
 
-// workgroup module add into global module (see mainctrl.js)
-var bookStoreworkgroup = angular.module('bookStore.workgroup', ['bookStore.workgroup.services'], function($routeProvider, $locationProvider) {
+// workgroup module add into global module (see app.js)
+var appworkgroup = angular.module('app.workgroup', ['app.workgroup.services'], function($routeProvider, $locationProvider) {
 
 	// workgroup list
 	$routeProvider.when('/workgroup', {
@@ -19,12 +19,14 @@ var bookStoreworkgroup = angular.module('bookStore.workgroup', ['bookStore.workg
 
 });
 
-// workgroup Controllers
-bookStoreworkgroup.controller('WorkgroupListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiWorkgroup', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiWorkgroup, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appworkgroup.controller('WorkgroupListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiWorkgroup', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiWorkgroup, ApiStorage) {
 	$rootScope.logMe("WorkgroupListCtrl");
 	var self = this;
 	
-	$scope.workgroups = ApiWorkgroup.search();
+	var listTmp = ApiWorkgroup.search();
+	$scope.workgroups = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Workgroup call
@@ -36,7 +38,10 @@ bookStoreworkgroup.controller('WorkgroupListCtrl', ['$scope', '$location', '$rou
 }]);
 
 
-bookStoreworkgroup.controller('WorkgroupDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiWorkgroup', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiWorkgroup, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appworkgroup.controller('WorkgroupDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiWorkgroup', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiWorkgroup, ApiStructure
+		) {
 	$rootScope.logMe("WorkgroupDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -76,7 +81,11 @@ bookStoreworkgroup.controller('WorkgroupDetailCtrl', ['$scope', '$location', '$r
 
 }]);
 
-bookStoreworkgroup.controller('WorkgroupCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiWorkgroup', function ($scope, $location, $routeParams, $rootScope, ApiWorkgroup) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appworkgroup.controller('WorkgroupCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiWorkgroup', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiWorkgroup, ApiStructure
+		) {
 	$rootScope.logMe("WorkgroupCreateCtrl");
 	$scope.oneworkgroup = {};
 	

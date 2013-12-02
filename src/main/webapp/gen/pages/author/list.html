@@ -7,23 +7,23 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>id</th>
-					      <th>firstName</th>
-					      <th>lastName</th>
-				    </tr>
+		      <th>id</th>
+		      <th>firstName</th>
+		      <th>lastName</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in authors">
-				      		<td>
-	      			<a href="#/author/{{key}}">{{value.id}}</a>
+        <tr data-ng-repeat="author in authors">
+	      		<td>
+	      			<a href="#/author/{{author.id}}">{{author.id}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/author/{{key}}">{{value.firstName}}</a>
+	      		<td>
+	      			<a href="#/author/{{author.id}}">{{author.firstName}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/author/{{key}}">{{value.lastName}}</a>
+	      		<td>
+	      			<a href="#/author/{{author.id}}">{{author.lastName}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

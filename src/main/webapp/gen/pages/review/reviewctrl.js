@@ -1,6 +1,6 @@
 
-// review module add into global module (see mainctrl.js)
-var bookStorereview = angular.module('bookStore.review', ['bookStore.review.services'], function($routeProvider, $locationProvider) {
+// review module add into global module (see app.js)
+var appreview = angular.module('app.review', ['app.review.services'], function($routeProvider, $locationProvider) {
 
 	// review list
 	$routeProvider.when('/review', {
@@ -19,12 +19,14 @@ var bookStorereview = angular.module('bookStore.review', ['bookStore.review.serv
 
 });
 
-// review Controllers
-bookStorereview.controller('ReviewListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiReview', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiReview, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appreview.controller('ReviewListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiReview', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiReview, ApiStorage) {
 	$rootScope.logMe("ReviewListCtrl");
 	var self = this;
 	
-	$scope.reviews = ApiReview.search();
+	var listTmp = ApiReview.search();
+	$scope.reviews = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Review call
@@ -36,7 +38,14 @@ bookStorereview.controller('ReviewListCtrl', ['$scope', '$location', '$routePara
 }]);
 
 
-bookStorereview.controller('ReviewDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiReview', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiReview, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appreview.controller('ReviewDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiReview', 'ApiStructure', 
+		'ApiBook',
+		'ApiCustomer',
+		function ($scope, $location, $routeParams, $rootScope, ApiReview, ApiStructure
+		, ApiBook
+		, ApiCustomer
+		) {
 	$rootScope.logMe("ReviewDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -74,9 +83,51 @@ bookStorereview.controller('ReviewDetailCtrl', ['$scope', '$location', '$routePa
 		$location.path("/review");
 	};
 
+	// ------ Directive configuration for book ------ 
+    $scope.book_myparams = {};
+    $scope.book_myparams.pageSize = 5;	
+    $scope.book_myparams.paginated = true;
+    $scope.book_myparams.key = ApiStructure.getStructureKey("book");
+	$scope.book_myparams.detail = ApiStructure.getStructureDetail("book");
+	$scope.book_myparams.columns = ApiStructure.getStructureColumns("book");
+	$scope.book_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiBook.search($scope.book_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.book_myparams.getdetailcallback = function(key) {
+		return ApiBook.get(key);
+    };
+	$scope.book_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for customer ------ 
+    $scope.customer_myparams = {};
+    $scope.customer_myparams.pageSize = 5;	
+    $scope.customer_myparams.paginated = true;
+    $scope.customer_myparams.key = ApiStructure.getStructureKey("customer");
+	$scope.customer_myparams.detail = ApiStructure.getStructureDetail("customer");
+	$scope.customer_myparams.columns = ApiStructure.getStructureColumns("customer");
+	$scope.customer_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCustomer.search($scope.customer_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.customer_myparams.getdetailcallback = function(key) {
+		return ApiCustomer.get(key);
+    };
+	$scope.customer_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
 
-bookStorereview.controller('ReviewCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiReview', function ($scope, $location, $routeParams, $rootScope, ApiReview) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appreview.controller('ReviewCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiReview', 'ApiStructure', 
+		'ApiBook',
+		'ApiCustomer',
+		function ($scope, $location, $routeParams, $rootScope, ApiReview, ApiStructure
+		, ApiBook
+		, ApiCustomer
+		) {
 	$rootScope.logMe("ReviewCreateCtrl");
 	$scope.onereview = {};
 	
@@ -96,5 +147,39 @@ bookStorereview.controller('ReviewCreateCtrl', ['$scope', '$location', '$routePa
 		$rootScope.logMe("openListReviewPage");
 		$location.path("/review");
 	};
+
+	// ------ Directive configuration for book ------ 
+    $scope.book_myparams = {};
+    $scope.book_myparams.pageSize = 5;	
+    $scope.book_myparams.paginated = true;
+    $scope.book_myparams.key = ApiStructure.getStructureKey("book");
+	$scope.book_myparams.detail = ApiStructure.getStructureDetail("book");
+	$scope.book_myparams.columns = ApiStructure.getStructureColumns("book");
+	$scope.book_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiBook.search($scope.book_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.book_myparams.getdetailcallback = function(key) {
+		return ApiBook.get(key);
+    };
+	$scope.book_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for customer ------ 
+    $scope.customer_myparams = {};
+    $scope.customer_myparams.pageSize = 5;	
+    $scope.customer_myparams.paginated = true;
+    $scope.customer_myparams.key = ApiStructure.getStructureKey("customer");
+	$scope.customer_myparams.detail = ApiStructure.getStructureDetail("customer");
+	$scope.customer_myparams.columns = ApiStructure.getStructureColumns("customer");
+	$scope.customer_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCustomer.search($scope.customer_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.customer_myparams.getdetailcallback = function(key) {
+		return ApiCustomer.get(key);
+    };
+	$scope.customer_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
 
 }]);

@@ -2,38 +2,44 @@
 <div id="bookorderitemEdit" data-ng-controller="BookOrderItemDetailCtrl">
  
     <h2>BookOrderItem Edit</h2>
-    
+ 
  	<form class="form-horizontal">
- 	
-	 		<div class="control-group">
-			<label class="control-label" for="bookOrderId">bookOrderId</label>
-			<div class="controls">
-				<input type="text" id="bookOrderId" data-ng-model="onebookorderitem.bookOrderId" />
-			</div>
-		</div>
-  	 		<div class="control-group">
-			<label class="control-label" for="bookId">bookId</label>
-			<div class="controls">
-				<input type="text" id="bookId" data-ng-model="onebookorderitem.bookId" />
-			</div>
-		</div>
-  	 		<div class="control-group">
+
+
+ 		<div class="control-group">
 			<label class="control-label" for="quantity">quantity</label>
 			<div class="controls">
 				<input type="text" id="quantity" data-ng-model="onebookorderitem.quantity" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="price">price</label>
 			<div class="controls">
 				<input type="text" id="price" data-ng-model="onebookorderitem.price" />
 			</div>
 		</div>
-  	
+
+
+ 		<div class="control-group">
+			<label class="control-label">bookOrder</label>
+			<div class="controls">
+				<myselect data-ng-params="bookOrder_myparams" data-ng-modelkey="onebookorderitem.bookOrder" ></myselect>
+			</div>
+		</div>
+ 		<div class="control-group">
+			<label class="control-label">book</label>
+			<div class="controls">
+				<myselect data-ng-params="book_myparams" data-ng-modelkey="onebookorderitem.book" ></myselect>
+			</div>
+		</div>
+
+
+
 	</form>
+
  	<br />
     <button data-ng-click="updateBookOrderItem()">Save</button>
     <button data-ng-click="removeBookOrderItem()">Remove</button>
 	<button data-ng-click="openListBookOrderItemPage()">Return to list</button>
- 
+  
 </div>

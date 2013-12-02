@@ -7,19 +7,19 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>bookId</th>
-					      <th>synopsis</th>
-				    </tr>
+		      <th>bookId</th>
+		      <th>synopsis</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in synopsiss">
-				      		<td>
-	      			<a href="#/synopsis/{{key}}">{{value.bookId}}</a>
+        <tr data-ng-repeat="synopsis in synopsiss">
+	      		<td>
+	      			<a href="#/synopsis/{{synopsis.bookId}}">{{synopsis.bookId}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/synopsis/{{key}}">{{value.synopsis}}</a>
+	      		<td>
+	      			<a href="#/synopsis/{{synopsis.bookId}}">{{synopsis.synopsis}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

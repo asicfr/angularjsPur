@@ -1,6 +1,6 @@
 
 // ${beanClass.name} services
-var bookServicesModule = angular.module('bookStore.${beanClass.name.toLowerCase()}.services', ['bookStore.storage.services']).factory('Api${beanClass.name}', function(${DOLLAR}rootScope, ${DOLLAR}http, ApiStorage) {
+var bookServicesModule = angular.module('app.${beanClass.name.toLowerCase()}.services', ['app.storage.services']).factory('Api${beanClass.name}', function(${DOLLAR}rootScope, ${DOLLAR}http, ApiStorage) {
     return {
         get: function (id) {
     		${DOLLAR}rootScope.logMe("${beanClass.name.toLowerCase()} srv get " + id);

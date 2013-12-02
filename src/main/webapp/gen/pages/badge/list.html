@@ -7,23 +7,23 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>badgeNumber</th>
-					      <th>authorizationLevel</th>
-					      <th>endOfValidity</th>
-				    </tr>
+		      <th>badgeNumber</th>
+		      <th>authorizationLevel</th>
+		      <th>endOfValidity</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in badges">
-				      		<td>
-	      			<a href="#/badge/{{key}}">{{value.badgeNumber}}</a>
+        <tr data-ng-repeat="badge in badges">
+	      		<td>
+	      			<a href="#/badge/{{badge.badgeNumber}}">{{badge.badgeNumber}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/badge/{{key}}">{{value.authorizationLevel}}</a>
+	      		<td>
+	      			<a href="#/badge/{{badge.badgeNumber}}">{{badge.authorizationLevel}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/badge/{{key}}">{{value.endOfValidity}}</a>
+	      		<td>
+	      			<a href="#/badge/{{badge.badgeNumber}}">{{badge.endOfValidity}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

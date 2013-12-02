@@ -7,51 +7,51 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>code</th>
-					      <th>name</th>
-					      <th>address1</th>
-					      <th>address2</th>
-					      <th>zipCode</th>
-					      <th>city</th>
-					      <th>countryCode</th>
-					      <th>phone</th>
-					      <th>email</th>
-					      <th>executive</th>
-				    </tr>
+		      <th>code</th>
+		      <th>name</th>
+		      <th>address1</th>
+		      <th>address2</th>
+		      <th>zipCode</th>
+		      <th>city</th>
+		      <th>countryCode</th>
+		      <th>phone</th>
+		      <th>email</th>
+		      <th>executive</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in shops">
-				      		<td>
-	      			<a href="#/shop/{{key}}">{{value.code}}</a>
+        <tr data-ng-repeat="shop in shops">
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.code}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.name}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.name}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.address1}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.address1}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.address2}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.address2}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.zipCode}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.zipCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.city}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.city}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.countryCode}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.countryCode}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.phone}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.phone}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.email}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.email}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/shop/{{key}}">{{value.executive}}</a>
+	      		<td>
+	      			<a href="#/shop/{{shop.code}}">{{shop.executive}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

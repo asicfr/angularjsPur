@@ -1,6 +1,6 @@
 
-// shop module add into global module (see mainctrl.js)
-var bookStoreshop = angular.module('bookStore.shop', ['bookStore.shop.services'], function($routeProvider, $locationProvider) {
+// shop module add into global module (see app.js)
+var appshop = angular.module('app.shop', ['app.shop.services'], function($routeProvider, $locationProvider) {
 
 	// shop list
 	$routeProvider.when('/shop', {
@@ -19,12 +19,14 @@ var bookStoreshop = angular.module('bookStore.shop', ['bookStore.shop.services']
 
 });
 
-// shop Controllers
-bookStoreshop.controller('ShopListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiShop', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiShop, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appshop.controller('ShopListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiShop', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiShop, ApiStorage) {
 	$rootScope.logMe("ShopListCtrl");
 	var self = this;
 	
-	$scope.shops = ApiShop.search();
+	var listTmp = ApiShop.search();
+	$scope.shops = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Shop call
@@ -36,7 +38,14 @@ bookStoreshop.controller('ShopListCtrl', ['$scope', '$location', '$routeParams',
 }]);
 
 
-bookStoreshop.controller('ShopDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiShop', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiShop, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appshop.controller('ShopDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiShop', 'ApiStructure', 
+		'ApiEmployee',
+		'ApiCountry',
+		function ($scope, $location, $routeParams, $rootScope, ApiShop, ApiStructure
+		, ApiEmployee
+		, ApiCountry
+		) {
 	$rootScope.logMe("ShopDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -74,9 +83,51 @@ bookStoreshop.controller('ShopDetailCtrl', ['$scope', '$location', '$routeParams
 		$location.path("/shop");
 	};
 
+	// ------ Directive configuration for employee ------ 
+    $scope.employee_myparams = {};
+    $scope.employee_myparams.pageSize = 5;	
+    $scope.employee_myparams.paginated = true;
+    $scope.employee_myparams.key = ApiStructure.getStructureKey("employee");
+	$scope.employee_myparams.detail = ApiStructure.getStructureDetail("employee");
+	$scope.employee_myparams.columns = ApiStructure.getStructureColumns("employee");
+	$scope.employee_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiEmployee.search($scope.employee_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.employee_myparams.getdetailcallback = function(key) {
+		return ApiEmployee.get(key);
+    };
+	$scope.employee_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for country ------ 
+    $scope.country_myparams = {};
+    $scope.country_myparams.pageSize = 5;	
+    $scope.country_myparams.paginated = true;
+    $scope.country_myparams.key = ApiStructure.getStructureKey("country");
+	$scope.country_myparams.detail = ApiStructure.getStructureDetail("country");
+	$scope.country_myparams.columns = ApiStructure.getStructureColumns("country");
+	$scope.country_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCountry.search($scope.country_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.country_myparams.getdetailcallback = function(key) {
+		return ApiCountry.get(key);
+    };
+	$scope.country_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
 
-bookStoreshop.controller('ShopCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiShop', function ($scope, $location, $routeParams, $rootScope, ApiShop) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appshop.controller('ShopCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiShop', 'ApiStructure', 
+		'ApiEmployee',
+		'ApiCountry',
+		function ($scope, $location, $routeParams, $rootScope, ApiShop, ApiStructure
+		, ApiEmployee
+		, ApiCountry
+		) {
 	$rootScope.logMe("ShopCreateCtrl");
 	$scope.oneshop = {};
 	
@@ -96,5 +147,39 @@ bookStoreshop.controller('ShopCreateCtrl', ['$scope', '$location', '$routeParams
 		$rootScope.logMe("openListShopPage");
 		$location.path("/shop");
 	};
+
+	// ------ Directive configuration for employee ------ 
+    $scope.employee_myparams = {};
+    $scope.employee_myparams.pageSize = 5;	
+    $scope.employee_myparams.paginated = true;
+    $scope.employee_myparams.key = ApiStructure.getStructureKey("employee");
+	$scope.employee_myparams.detail = ApiStructure.getStructureDetail("employee");
+	$scope.employee_myparams.columns = ApiStructure.getStructureColumns("employee");
+	$scope.employee_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiEmployee.search($scope.employee_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.employee_myparams.getdetailcallback = function(key) {
+		return ApiEmployee.get(key);
+    };
+	$scope.employee_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for country ------ 
+    $scope.country_myparams = {};
+    $scope.country_myparams.pageSize = 5;	
+    $scope.country_myparams.paginated = true;
+    $scope.country_myparams.key = ApiStructure.getStructureKey("country");
+	$scope.country_myparams.detail = ApiStructure.getStructureDetail("country");
+	$scope.country_myparams.columns = ApiStructure.getStructureColumns("country");
+	$scope.country_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiCountry.search($scope.country_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.country_myparams.getdetailcallback = function(key) {
+		return ApiCountry.get(key);
+    };
+	$scope.country_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
 
 }]);

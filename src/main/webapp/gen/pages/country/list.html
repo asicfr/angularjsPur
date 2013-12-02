@@ -7,19 +7,19 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>code</th>
-					      <th>name</th>
-				    </tr>
+		      <th>code</th>
+		      <th>name</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in countrys">
-				      		<td>
-	      			<a href="#/country/{{key}}">{{value.code}}</a>
+        <tr data-ng-repeat="country in countrys">
+	      		<td>
+	      			<a href="#/country/{{country.code}}">{{country.code}}</a>
 	      		</td>
-		  		      		<td>
-	      			<a href="#/country/{{key}}">{{value.name}}</a>
+	      		<td>
+	      			<a href="#/country/{{country.code}}">{{country.name}}</a>
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  

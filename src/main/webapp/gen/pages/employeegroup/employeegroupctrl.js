@@ -1,6 +1,6 @@
 
-// employeegroup module add into global module (see mainctrl.js)
-var bookStoreemployeegroup = angular.module('bookStore.employeegroup', ['bookStore.employeegroup.services'], function($routeProvider, $locationProvider) {
+// employeegroup module add into global module (see app.js)
+var appemployeegroup = angular.module('app.employeegroup', ['app.employeegroup.services'], function($routeProvider, $locationProvider) {
 
 	// employeegroup list
 	$routeProvider.when('/employeegroup', {
@@ -19,12 +19,14 @@ var bookStoreemployeegroup = angular.module('bookStore.employeegroup', ['bookSto
 
 });
 
-// employeegroup Controllers
-bookStoreemployeegroup.controller('EmployeeGroupListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployeeGroup', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiEmployeeGroup, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appemployeegroup.controller('EmployeeGroupListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployeeGroup', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiEmployeeGroup, ApiStorage) {
 	$rootScope.logMe("EmployeeGroupListCtrl");
 	var self = this;
 	
-	$scope.employeegroups = ApiEmployeeGroup.search();
+	var listTmp = ApiEmployeeGroup.search();
+	$scope.employeegroups = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new EmployeeGroup call
@@ -36,7 +38,10 @@ bookStoreemployeegroup.controller('EmployeeGroupListCtrl', ['$scope', '$location
 }]);
 
 
-bookStoreemployeegroup.controller('EmployeeGroupDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployeeGroup', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiEmployeeGroup, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appemployeegroup.controller('EmployeeGroupDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployeeGroup', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiEmployeeGroup, ApiStructure
+		) {
 	$rootScope.logMe("EmployeeGroupDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -76,7 +81,11 @@ bookStoreemployeegroup.controller('EmployeeGroupDetailCtrl', ['$scope', '$locati
 
 }]);
 
-bookStoreemployeegroup.controller('EmployeeGroupCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployeeGroup', function ($scope, $location, $routeParams, $rootScope, ApiEmployeeGroup) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appemployeegroup.controller('EmployeeGroupCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployeeGroup', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiEmployeeGroup, ApiStructure
+		) {
 	$rootScope.logMe("EmployeeGroupCreateCtrl");
 	$scope.oneemployeegroup = {};
 	

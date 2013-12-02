@@ -1,6 +1,6 @@
 
 // Badge services
-var bookServicesModule = angular.module('bookStore.badge.services', ['bookStore.storage.services']).factory('ApiBadge', function($rootScope, $http, ApiStorage) {
+var bookServicesModule = angular.module('app.badge.services', ['app.storage.services']).factory('ApiBadge', function($rootScope, $http, ApiStorage) {
     return {
         get: function (id) {
     		$rootScope.logMe("badge srv get " + id);

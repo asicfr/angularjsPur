@@ -1,6 +1,6 @@
 
-// author module add into global module (see mainctrl.js)
-var bookStoreauthor = angular.module('bookStore.author', ['bookStore.author.services'], function($routeProvider, $locationProvider) {
+// author module add into global module (see app.js)
+var appauthor = angular.module('app.author', ['app.author.services'], function($routeProvider, $locationProvider) {
 
 	// author list
 	$routeProvider.when('/author', {
@@ -19,12 +19,14 @@ var bookStoreauthor = angular.module('bookStore.author', ['bookStore.author.serv
 
 });
 
-// author Controllers
-bookStoreauthor.controller('AuthorListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiAuthor', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiAuthor, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appauthor.controller('AuthorListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiAuthor', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiAuthor, ApiStorage) {
 	$rootScope.logMe("AuthorListCtrl");
 	var self = this;
 	
-	$scope.authors = ApiAuthor.search();
+	var listTmp = ApiAuthor.search();
+	$scope.authors = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Author call
@@ -36,7 +38,10 @@ bookStoreauthor.controller('AuthorListCtrl', ['$scope', '$location', '$routePara
 }]);
 
 
-bookStoreauthor.controller('AuthorDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiAuthor', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiAuthor, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appauthor.controller('AuthorDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiAuthor', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiAuthor, ApiStructure
+		) {
 	$rootScope.logMe("AuthorDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -76,7 +81,11 @@ bookStoreauthor.controller('AuthorDetailCtrl', ['$scope', '$location', '$routePa
 
 }]);
 
-bookStoreauthor.controller('AuthorCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiAuthor', function ($scope, $location, $routeParams, $rootScope, ApiAuthor) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appauthor.controller('AuthorCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiAuthor', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiAuthor, ApiStructure
+		) {
 	$rootScope.logMe("AuthorCreateCtrl");
 	$scope.oneauthor = {};
 	

@@ -4,56 +4,61 @@
     <h2>Publisher Create</h2>
  
  	<form class="form-horizontal">
- 	
-	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="code">code</label>
 			<div class="controls">
 				<input type="text" id="code" data-ng-model="onepublisher.code" />
 			</div>
 		</div>
-  	 		<div class="control-group">
-			<label class="control-label" for="countryCode">countryCode</label>
-			<div class="controls">
-				<input type="text" id="countryCode" data-ng-model="onepublisher.countryCode" />
-			</div>
-		</div>
-  	 		<div class="control-group">
+
+ 		<div class="control-group">
 			<label class="control-label" for="name">name</label>
 			<div class="controls">
 				<input type="text" id="name" data-ng-model="onepublisher.name" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="email">email</label>
 			<div class="controls">
 				<input type="text" id="email" data-ng-model="onepublisher.email" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="contact">contact</label>
 			<div class="controls">
 				<input type="text" id="contact" data-ng-model="onepublisher.contact" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="city">city</label>
 			<div class="controls">
 				<input type="text" id="city" data-ng-model="onepublisher.city" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="zipCode">zipCode</label>
 			<div class="controls">
 				<input type="text" id="zipCode" data-ng-model="onepublisher.zipCode" />
 			</div>
 		</div>
-  	 		<div class="control-group">
+ 		<div class="control-group">
 			<label class="control-label" for="phone">phone</label>
 			<div class="controls">
 				<input type="text" id="phone" data-ng-model="onepublisher.phone" />
 			</div>
 		</div>
-  	
+
+
+ 		<div class="control-group">
+			<label class="control-label">country</label>
+			<div class="controls">
+				<myselect data-ng-params="country_myparams" data-ng-modelkey="onepublisher.country" ></myselect>
+			</div>
+		</div>
+
+
+
 	</form>
 
  	<br />

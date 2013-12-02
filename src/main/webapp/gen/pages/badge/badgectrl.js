@@ -1,6 +1,6 @@
 
-// badge module add into global module (see mainctrl.js)
-var bookStorebadge = angular.module('bookStore.badge', ['bookStore.badge.services'], function($routeProvider, $locationProvider) {
+// badge module add into global module (see app.js)
+var appbadge = angular.module('app.badge', ['app.badge.services'], function($routeProvider, $locationProvider) {
 
 	// badge list
 	$routeProvider.when('/badge', {
@@ -19,12 +19,14 @@ var bookStorebadge = angular.module('bookStore.badge', ['bookStore.badge.service
 
 });
 
-// badge Controllers
-bookStorebadge.controller('BadgeListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBadge', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBadge, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appbadge.controller('BadgeListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBadge', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBadge, ApiStorage) {
 	$rootScope.logMe("BadgeListCtrl");
 	var self = this;
 	
-	$scope.badges = ApiBadge.search();
+	var listTmp = ApiBadge.search();
+	$scope.badges = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Badge call
@@ -36,7 +38,10 @@ bookStorebadge.controller('BadgeListCtrl', ['$scope', '$location', '$routeParams
 }]);
 
 
-bookStorebadge.controller('BadgeDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBadge', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiBadge, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appbadge.controller('BadgeDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBadge', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiBadge, ApiStructure
+		) {
 	$rootScope.logMe("BadgeDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -76,7 +81,11 @@ bookStorebadge.controller('BadgeDetailCtrl', ['$scope', '$location', '$routePara
 
 }]);
 
-bookStorebadge.controller('BadgeCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBadge', function ($scope, $location, $routeParams, $rootScope, ApiBadge) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appbadge.controller('BadgeCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiBadge', 'ApiStructure', 
+		function ($scope, $location, $routeParams, $rootScope, ApiBadge, ApiStructure
+		) {
 	$rootScope.logMe("BadgeCreateCtrl");
 	$scope.onebadge = {};
 	

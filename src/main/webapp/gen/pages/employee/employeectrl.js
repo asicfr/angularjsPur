@@ -1,6 +1,6 @@
 
-// employee module add into global module (see mainctrl.js)
-var bookStoreemployee = angular.module('bookStore.employee', ['bookStore.employee.services'], function($routeProvider, $locationProvider) {
+// employee module add into global module (see app.js)
+var appemployee = angular.module('app.employee', ['app.employee.services'], function($routeProvider, $locationProvider) {
 
 	// employee list
 	$routeProvider.when('/employee', {
@@ -19,12 +19,14 @@ var bookStoreemployee = angular.module('bookStore.employee', ['bookStore.employe
 
 });
 
-// employee Controllers
-bookStoreemployee.controller('EmployeeListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployee', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiEmployee, ApiStorage) {
+
+// -------------------- List Ctrl -------------------------------------------------------------------
+appemployee.controller('EmployeeListCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployee', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiEmployee, ApiStorage) {
 	$rootScope.logMe("EmployeeListCtrl");
 	var self = this;
 	
-	$scope.employees = ApiEmployee.search();
+	var listTmp = ApiEmployee.search();
+	$scope.employees = listTmp.datapage;
 	$rootScope.logMe("search end");
 
 	// new Employee call
@@ -36,7 +38,14 @@ bookStoreemployee.controller('EmployeeListCtrl', ['$scope', '$location', '$route
 }]);
 
 
-bookStoreemployee.controller('EmployeeDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployee', 'ApiStorage', function ($scope, $location, $routeParams, $rootScope, ApiEmployee, ApiStorage) {
+// -------------------- Detail Ctrl -------------------------------------------------------------------
+appemployee.controller('EmployeeDetailCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployee', 'ApiStructure', 
+		'ApiShop',
+		'ApiBadge',
+		function ($scope, $location, $routeParams, $rootScope, ApiEmployee, ApiStructure
+		, ApiShop
+		, ApiBadge
+		) {
 	$rootScope.logMe("EmployeeDetailCtrl");
 	$scope.idCurrent = $routeParams.id;
 	
@@ -74,9 +83,51 @@ bookStoreemployee.controller('EmployeeDetailCtrl', ['$scope', '$location', '$rou
 		$location.path("/employee");
 	};
 
+	// ------ Directive configuration for shop ------ 
+    $scope.shop_myparams = {};
+    $scope.shop_myparams.pageSize = 5;	
+    $scope.shop_myparams.paginated = true;
+    $scope.shop_myparams.key = ApiStructure.getStructureKey("shop");
+	$scope.shop_myparams.detail = ApiStructure.getStructureDetail("shop");
+	$scope.shop_myparams.columns = ApiStructure.getStructureColumns("shop");
+	$scope.shop_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiShop.search($scope.shop_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.shop_myparams.getdetailcallback = function(key) {
+		return ApiShop.get(key);
+    };
+	$scope.shop_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for badge ------ 
+    $scope.badge_myparams = {};
+    $scope.badge_myparams.pageSize = 5;	
+    $scope.badge_myparams.paginated = true;
+    $scope.badge_myparams.key = ApiStructure.getStructureKey("badge");
+	$scope.badge_myparams.detail = ApiStructure.getStructureDetail("badge");
+	$scope.badge_myparams.columns = ApiStructure.getStructureColumns("badge");
+	$scope.badge_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiBadge.search($scope.badge_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.badge_myparams.getdetailcallback = function(key) {
+		return ApiBadge.get(key);
+    };
+	$scope.badge_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
 }]);
 
-bookStoreemployee.controller('EmployeeCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployee', function ($scope, $location, $routeParams, $rootScope, ApiEmployee) {
+
+// -------------------- Create Ctrl -------------------------------------------------------------------
+appemployee.controller('EmployeeCreateCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'ApiEmployee', 'ApiStructure', 
+		'ApiShop',
+		'ApiBadge',
+		function ($scope, $location, $routeParams, $rootScope, ApiEmployee, ApiStructure
+		, ApiShop
+		, ApiBadge
+		) {
 	$rootScope.logMe("EmployeeCreateCtrl");
 	$scope.oneemployee = {};
 	
@@ -96,5 +147,39 @@ bookStoreemployee.controller('EmployeeCreateCtrl', ['$scope', '$location', '$rou
 		$rootScope.logMe("openListEmployeePage");
 		$location.path("/employee");
 	};
+
+	// ------ Directive configuration for shop ------ 
+    $scope.shop_myparams = {};
+    $scope.shop_myparams.pageSize = 5;	
+    $scope.shop_myparams.paginated = true;
+    $scope.shop_myparams.key = ApiStructure.getStructureKey("shop");
+	$scope.shop_myparams.detail = ApiStructure.getStructureDetail("shop");
+	$scope.shop_myparams.columns = ApiStructure.getStructureColumns("shop");
+	$scope.shop_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiShop.search($scope.shop_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.shop_myparams.getdetailcallback = function(key) {
+		return ApiShop.get(key);
+    };
+	$scope.shop_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
+
+	// ------ Directive configuration for badge ------ 
+    $scope.badge_myparams = {};
+    $scope.badge_myparams.pageSize = 5;	
+    $scope.badge_myparams.paginated = true;
+    $scope.badge_myparams.key = ApiStructure.getStructureKey("badge");
+	$scope.badge_myparams.detail = ApiStructure.getStructureDetail("badge");
+	$scope.badge_myparams.columns = ApiStructure.getStructureColumns("badge");
+	$scope.badge_myparams.getlistcallback = function(pageindex, filtre) {
+        return ApiBadge.search($scope.badge_myparams.pageSize, pageindex, filtre);
+    };
+	$scope.badge_myparams.getdetailcallback = function(key) {
+		return ApiBadge.get(key);
+    };
+	$scope.badge_myparams.onclickcallback = function(onerecord) {
+        // alert(onerecord.name);
+    };
 
 }]);

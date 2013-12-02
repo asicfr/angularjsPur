@@ -7,19 +7,21 @@
 	<table class="table table-striped colortable">
 	  <thead>
 	    <tr>
-					      <th>employeeCode</th>
-					      <th>groupId</th>
-				    </tr>
+		      <th>employeeCode</th>
+		      <th>groupId</th>
+	    </tr>
 	  </thead>
 	  <tbody>
-        <tr data-ng-repeat="(key, value) in employeegroups">
-				      		<td>
-	      			<a href="#/employeegroup/{{key}}">{{value.employeeCode}}</a>
+        <tr data-ng-repeat="employeegroup in employeegroups">
+	      		<td>
+					// Comment faire un lien avec une cle composite ??????????? enchainer les parties de clés ?
+
 	      		</td>
-		  		      		<td>
-	      			<a href="#/employeegroup/{{key}}">{{value.groupId}}</a>
+	      		<td>
+					// Comment faire un lien avec une cle composite ??????????? enchainer les parties de clés ?
+
 	      		</td>
-		  		    </tr>
+	    </tr>
 	  </tbody>
 	</table>
  
