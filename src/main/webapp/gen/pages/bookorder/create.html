@@ -29,19 +29,19 @@
  		<div class="control-group">
 			<label class="control-label">shop</label>
 			<div class="controls">
-				<myselect data-ng-params="shop_myparams" data-ng-modelkey="onebookorder.shop" ></myselect>
+				<myselect id="shopSelect" data-ng-params="shop_myparams" data-ng-modelkey="onebookorder.shop" ></myselect>
 			</div>
 		</div>
  		<div class="control-group">
 			<label class="control-label">employee</label>
 			<div class="controls">
-				<myselect data-ng-params="employee_myparams" data-ng-modelkey="onebookorder.employee" ></myselect>
+				<myselect id="employeeSelect" data-ng-params="employee_myparams" data-ng-modelkey="onebookorder.employee" ></myselect>
 			</div>
 		</div>
  		<div class="control-group">
 			<label class="control-label">customer</label>
 			<div class="controls">
-				<myselect data-ng-params="customer_myparams" data-ng-modelkey="onebookorder.customer" ></myselect>
+				<myselect id="customerSelect" data-ng-params="customer_myparams" data-ng-modelkey="onebookorder.customer" ></myselect>
 			</div>
 		</div>
 
@@ -50,7 +50,7 @@
 	</form>
 
  	<br />
-    <button data-ng-click="saveBookOrder()">Save</button>
-	<button data-ng-click="openListBookOrderPage()">Return to list</button>
+    <button id="saveBtn" data-ng-click="saveBookOrder()">Save</button>
+	<button id="backBtn" data-ng-click="openListBookOrderPage()">Return to list</button>
   
 </div>

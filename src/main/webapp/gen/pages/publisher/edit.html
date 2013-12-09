@@ -53,7 +53,7 @@
  		<div class="control-group">
 			<label class="control-label">country</label>
 			<div class="controls">
-				<myselect data-ng-params="country_myparams" data-ng-modelkey="onepublisher.country" ></myselect>
+				<myselect id="countrySelect" data-ng-params="country_myparams" data-ng-modelkey="onepublisher.country" ></myselect>
 			</div>
 		</div>
 
@@ -62,8 +62,8 @@
 	</form>
 
  	<br />
-    <button data-ng-click="updatePublisher()">Save</button>
-    <button data-ng-click="removePublisher()">Remove</button>
-	<button data-ng-click="openListPublisherPage()">Return to list</button>
+    <button id="updateBtn" data-ng-click="updatePublisher()">Save</button>
+    <button id="removeBtn" data-ng-click="removePublisher()">Remove</button>
+	<button id="backBtn" data-ng-click="openListPublisherPage()">Return to list</button>
   
 </div>

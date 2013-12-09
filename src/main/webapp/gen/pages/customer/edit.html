@@ -71,7 +71,7 @@
  		<div class="control-group">
 			<label class="control-label">country</label>
 			<div class="controls">
-				<myselect data-ng-params="country_myparams" data-ng-modelkey="onecustomer.country" ></myselect>
+				<myselect id="countrySelect" data-ng-params="country_myparams" data-ng-modelkey="onecustomer.country" ></myselect>
 			</div>
 		</div>
 
@@ -80,8 +80,8 @@
 	</form>
 
  	<br />
-    <button data-ng-click="updateCustomer()">Save</button>
-    <button data-ng-click="removeCustomer()">Remove</button>
-	<button data-ng-click="openListCustomerPage()">Return to list</button>
+    <button id="updateBtn" data-ng-click="updateCustomer()">Save</button>
+    <button id="removeBtn" data-ng-click="removeCustomer()">Remove</button>
+	<button id="backBtn" data-ng-click="openListCustomerPage()">Return to list</button>
   
 </div>

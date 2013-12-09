@@ -65,27 +65,29 @@ storageServicesModule.factory('ApiStorage', function($rootScope, $http, ApiStruc
 			// default pageSize
 			var pageSizeTmp = pageSize;
 			if ((pageSize === null) || (typeof pageSize === "undefined")) {
-				pageSizeTmp = 3;
+				return  {
+					"currentpageindex" : 1,
+					"maxpageindex" : 1,
+					"datapage" : templist
+				};
+			} else {
+				// compute data list according to number of pages and page number
+				var pageNb = computePageNb(templist.length, pageSizeTmp);
+				
+				// compute page index
+				var innerpageindex = computePageIndex(pageindex, pageNb);
+				
+				// extraction des elements souhaités
+				var fromCpt = (innerpageindex - 1) * pageSizeTmp;
+				var toCpt = innerpageindex * pageSizeTmp;
+				var sublist = templist.slice(fromCpt, toCpt);            
+				
+				return  {
+					"currentpageindex" : innerpageindex,
+					"maxpageindex" : pageNb,
+					"datapage" : sublist
+				};
 			}
-			
-			// compute data list according to number of pages and page number
-			var pageNb = computePageNb(templist.length, pageSizeTmp);
-			
-			// compute page index
-			var innerpageindex = computePageIndex(pageindex, pageNb);
-			
-			// extraction des elements souhaités
-			var fromCpt = (innerpageindex - 1) * pageSizeTmp;
-			var toCpt = innerpageindex * pageSizeTmp;
-			var sublist = templist.slice(fromCpt, toCpt);            
-			
-			// TODO renvoyer la liste directe si pas de pagination
-			
-			return  {
-				"currentpageindex" : innerpageindex,
-				"maxpageindex" : pageNb,
-				"datapage" : sublist
-			};
 		} else {
 			return  {
 				"currentpageindex" : 0,

@@ -18,7 +18,7 @@
 						<ul class="dropdown-menu">
 	
 	#foreach ( $entityClass in $selectedEntities )
-							<li role="presentation"><a role="menuitem" href="#/${entityClass.name.toLowerCase()}">${entityClass.name}</a></li>
+							<li role="presentation"><a id="${entityClass.name}Menu" role="menuitem" href="#/${entityClass.name.toLowerCase()}">${entityClass.name}</a></li>
 	#end 
 	
 						</ul>

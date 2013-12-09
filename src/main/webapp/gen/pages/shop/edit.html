@@ -59,13 +59,13 @@
  		<div class="control-group">
 			<label class="control-label">employee</label>
 			<div class="controls">
-				<myselect data-ng-params="employee_myparams" data-ng-modelkey="oneshop.employee" ></myselect>
+				<myselect id="employeeSelect" data-ng-params="employee_myparams" data-ng-modelkey="oneshop.employee" ></myselect>
 			</div>
 		</div>
  		<div class="control-group">
 			<label class="control-label">country</label>
 			<div class="controls">
-				<myselect data-ng-params="country_myparams" data-ng-modelkey="oneshop.country" ></myselect>
+				<myselect id="countrySelect" data-ng-params="country_myparams" data-ng-modelkey="oneshop.country" ></myselect>
 			</div>
 		</div>
 
@@ -74,8 +74,8 @@
 	</form>
 
  	<br />
-    <button data-ng-click="updateShop()">Save</button>
-    <button data-ng-click="removeShop()">Remove</button>
-	<button data-ng-click="openListShopPage()">Return to list</button>
+    <button id="updateBtn" data-ng-click="updateShop()">Save</button>
+    <button id="removeBtn" data-ng-click="removeShop()">Remove</button>
+	<button id="backBtn" data-ng-click="openListShopPage()">Return to list</button>
   
 </div>

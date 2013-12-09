@@ -30,7 +30,7 @@ app.run(function(${DOLLAR}rootScope, ${DOLLAR}templateCache, ${DOLLAR}http, ApiS
 });
 
 // Welcome module
-var appmain = angular.module('app.main', [], function(${DOLLAR}routeProvider, ${DOLLAR}locationProvider) {
+var appmain = angular.module('app.main', ['ngRoute'], function(${DOLLAR}routeProvider, ${DOLLAR}locationProvider) {
 	
 	// Declare welcome route
 	${DOLLAR}routeProvider.when('/welcome', {

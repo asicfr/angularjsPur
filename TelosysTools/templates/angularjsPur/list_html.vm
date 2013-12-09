@@ -31,6 +31,6 @@
 	</table>
  
  	<br />
- 	<button data-ng-click="openCreate${beanClass.name}Page()">New</button>
+ 	<button id="newBtn" data-ng-click="openCreate${beanClass.name}Page()">New</button>
  
 </div>

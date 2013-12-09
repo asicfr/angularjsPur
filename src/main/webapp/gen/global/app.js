@@ -41,7 +41,7 @@ app.run(function($rootScope, $templateCache, $http, ApiStorage) {
 });
 
 // Welcome module
-var appmain = angular.module('app.main', [], function($routeProvider, $locationProvider) {
+var appmain = angular.module('app.main', ['ngRoute'], function($routeProvider, $locationProvider) {
 	
 	// Declare welcome route
 	$routeProvider.when('/welcome', {

@@ -23,7 +23,7 @@
  		<div class="control-group">
 			<label class="control-label">book</label>
 			<div class="controls">
-				<myselect data-ng-params="book_myparams" data-ng-modelkey="onesynopsis.book" ></myselect>
+				<myselect id="bookSelect" data-ng-params="book_myparams" data-ng-modelkey="onesynopsis.book" ></myselect>
 			</div>
 		</div>
 
@@ -32,8 +32,8 @@
 	</form>
 
  	<br />
-    <button data-ng-click="updateSynopsis()">Save</button>
-    <button data-ng-click="removeSynopsis()">Remove</button>
-	<button data-ng-click="openListSynopsisPage()">Return to list</button>
+    <button id="updateBtn" data-ng-click="updateSynopsis()">Save</button>
+    <button id="removeBtn" data-ng-click="removeSynopsis()">Remove</button>
+	<button id="backBtn" data-ng-click="openListSynopsisPage()">Return to list</button>
   
 </div>

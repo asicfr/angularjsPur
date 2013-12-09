@@ -59,13 +59,13 @@
  		<div class="control-group">
 			<label class="control-label">author</label>
 			<div class="controls">
-				<myselect data-ng-params="author_myparams" data-ng-modelkey="onebook.author" ></myselect>
+				<myselect id="authorSelect" data-ng-params="author_myparams" data-ng-modelkey="onebook.author" ></myselect>
 			</div>
 		</div>
  		<div class="control-group">
 			<label class="control-label">publisher</label>
 			<div class="controls">
-				<myselect data-ng-params="publisher_myparams" data-ng-modelkey="onebook.publisher" ></myselect>
+				<myselect id="publisherSelect" data-ng-params="publisher_myparams" data-ng-modelkey="onebook.publisher" ></myselect>
 			</div>
 		</div>
 
@@ -74,7 +74,7 @@
 	</form>
 
  	<br />
-    <button data-ng-click="saveBook()">Save</button>
-	<button data-ng-click="openListBookPage()">Return to list</button>
+    <button id="saveBtn" data-ng-click="saveBook()">Save</button>
+	<button id="backBtn" data-ng-click="openListBookPage()">Return to list</button>
   
 </div>

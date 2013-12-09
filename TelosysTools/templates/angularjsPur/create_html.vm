@@ -37,7 +37,7 @@
  		<div class="control-group">
 			<label class="control-label">${link.javaName}</label>
 			<div class="controls">
-				<myselect data-ng-params="${link.javaName}_myparams" data-ng-modelkey="one${beanClass.name.toLowerCase()}.${link.javaName}" ></myselect>
+				<myselect id="${link.javaName}Select" data-ng-params="${link.javaName}_myparams" data-ng-modelkey="one${beanClass.name.toLowerCase()}.${link.javaName}" ></myselect>
 			</div>
 		</div>
 #else 
@@ -51,7 +51,7 @@
 	</form>
 
  	<br />
-    <button data-ng-click="save${beanClass.name}()">Save</button>
-	<button data-ng-click="openList${beanClass.name}Page()">Return to list</button>
+    <button id="saveBtn" data-ng-click="save${beanClass.name}()">Save</button>
+	<button id="backBtn" data-ng-click="openList${beanClass.name}Page()">Return to list</button>
   
 </div>
